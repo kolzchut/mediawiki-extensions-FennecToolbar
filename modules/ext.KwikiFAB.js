@@ -119,7 +119,7 @@
                     $name = $('<input>').attr({
                         size:"30",
                         id:"formInput_Item",
-                        placeholder:"הכנס את שם הפריט",
+                        placeholder:mw.msg('spni-insert-item-name'),
                         class : "formInput input-item-name zero-padding float-right col-sm-12 col-md-7",
                         name:"page_name",
                         type:"text"

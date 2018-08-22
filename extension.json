@@ -298,6 +298,7 @@
             ],
             "messages": [               
                 "create-toggle-popup",
+                "spni-insert-item-name",
                 "edit-toggle-popup",
                 "quick-edit-toggle-popup",
                 "files-toggle-popup"
