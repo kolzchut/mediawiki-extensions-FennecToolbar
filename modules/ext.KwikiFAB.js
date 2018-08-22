@@ -27,73 +27,73 @@
         var editTitle = {};
 
         /////////////////////////////////////////////////////////////////////////
-        $("").on("click", "", function (e) {
+        // $("").on("click", "", function (e) {
 
-            e.preventDefault();
-            if (isVisualEditorNotActiveted()) {
+        //     e.preventDefault();
+        //     if (isVisualEditorNotActiveted()) {
 
-                var dialog = bootbox.dialog({
-                    title: 'צור פריט',
-                    message:
-                    "<form name=\"createbox\"  id=\"form_crate_item\" action=\"action_link\" method=\"get\" class=\"\" >" +
-                    " "+
-                    "" +
-                    "" +
-                    "<input size=\"30\"  id=\"formInput_Item\" placeholder=\"הכנס את שם הפריט\" autofocus=\"\" class=\"formInput input-item-name zero-padding  pull-right col-xl-7\" name=\"page_name\"> "+
-                    "" +
-                    "<select class=\"form-control col-xl-4 zero-padding \" id=\"newItemForm\">\"<option disabled selected value> -- בחר סוג פריט -- </option>+\"</select>" +
-                    "" +""+
-                    "<input id=\"form_id\" type=\"hidden\" value=\"\" name=\"form\">" +
-                    "<input id=\"namespace_id\" type=\"hidden\" value=\"\" name=\"namespace\">" +
-                    "" +
-                    ""+"<span id='error_item' class='pull-left'> </span>" +
-                    "<input type=\"submit\" id=\"input_button_1\" class=\"forminput_button float-right \"  value=\"יצירת פריט\"> " +
-                    "</form>" +
-                    "" +
-                    " "+
-                    "" +
-                    "<script>" +
-                    "var option =\"\";" +
-                    "for (i=0 ; i< wgFABNamespacesAndTemplates.length; i++){" +
-                    "option += '<option value=\"' + wgFABNamespacesAndTemplates[i]['namespace'] + '#' + wgFABNamespacesAndTemplates[i]['form'] + '\">' + wgFABNamespacesAndTemplates[i]['title'] + '</option>';" +
-                    "}" +
-                    "$(\"#newItemForm\").append(option);" +
-                    "$(document).on(\"change\", \"#newItemForm\", function(){"
-                    +
-                    "$('#namespace_id').val(this.value.split('#')[0]);"+
-                    " $('#form_id').val(this.value.split('#')[1]);" +
-                    "});" +
+        //         var dialog = bootbox.dialog({
+        //             title: 'צור פריט',
+        //             message:
+        //             "<form name=\"createbox\"  id=\"form_crate_item\" action=\"action_link\" method=\"get\" class=\"\" >" +
+        //             " "+
+        //             "" +
+        //             "" +
+        //             "<input size=\"30\"  id=\"formInput_Item\" placeholder=\"הכנס את שם הפריט\" autofocus=\"\" class=\"formInput input-item-name zero-padding  pull-right col-xl-7\" name=\"page_name\"> "+
+        //             "" +
+        //             "<select class=\"form-control col-xl-4 zero-padding \" id=\"newItemForm\">\"<option disabled selected value> -- בחר סוג פריט -- </option>+\"</select>" +
+        //             "" +""+
+        //             "<input id=\"form_id\" type=\"hidden\" value=\"\" name=\"form\">" +
+        //             "<input id=\"namespace_id\" type=\"hidden\" value=\"\" name=\"namespace\">" +
+        //             "" +
+        //             ""+"<span id='error_item' class='pull-left'> </span>" +
+        //             "<input type=\"submit\" id=\"input_button_1\" class=\"forminput_button float-right \"  value=\"יצירת פריט\"> " +
+        //             "</form>" +
+        //             "" +
+        //             " "+
+        //             "" +
+        //             "<script>" +
+        //             "var option =\"\";" +
+        //             "for (i=0 ; i< wgFABNamespacesAndTemplates.length; i++){" +
+        //             "option += '<option value=\"' + wgFABNamespacesAndTemplates[i]['namespace'] + '#' + wgFABNamespacesAndTemplates[i]['form'] + '\">' + wgFABNamespacesAndTemplates[i]['title'] + '</option>';" +
+        //             "}" +
+        //             "$(\"#newItemForm\").append(option);" +
+        //             "$(document).on(\"change\", \"#newItemForm\", function(){"
+        //             +
+        //             "$('#namespace_id').val(this.value.split('#')[0]);"+
+        //             " $('#form_id').val(this.value.split('#')[1]);" +
+        //             "});" +
 
-                    "</script>" ,
-                    buttons: {
-                        cancel: {
-                            label: mw.msg("modal-cancel-button") + ' <i class="fa fa-times"></i>'
-                        }
-                    },
-                });
+        //             "</script>" ,
+        //             buttons: {
+        //                 cancel: {
+        //                     label: mw.msg("modal-cancel-button") + ' <i class="fa fa-times"></i>'
+        //                 }
+        //             },
+        //         });
 
-                $( "#form_crate_item" ).submit(function( event ) {
-                    $("#newItemForm").css({"border" : "1px solid #ccc"});
-                    if ( $('#namespace_id').val()  === "" ) {
-                        $( "#error_item" ).text("נא למלא את כל שדות  ").show();
-                        $("#newItemForm").css({"border" : "1px solid red"});
+        //         $( "#form_crate_item" ).submit(function( event ) {
+        //             $("#newItemForm").css({"border" : "1px solid #ccc"});
+        //             if ( $('#namespace_id').val()  === "" ) {
+        //                 $( "#error_item" ).text("נא למלא את כל שדות  ").show();
+        //                 $("#newItemForm").css({"border" : "1px solid red"});
 
-                        return false;
-                    }
-                    if ( $( "#formInput_Item" ).val() === "" ) {
-                        $( "#error_item" ).text("נא למלא את כל שדות  ").show();
-                        $("#formInput_Item").css({"border" : "1px solid red"});
-                        return false;
-                    }
-                    var  wgServer = mw.config.get( 'wgServer' );
-                    var  wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', '');
-                    var action_link = wgServer+wgPagePath+"%D7%9E%D7%99%D7%95%D7%97%D7%93:%D7%AA%D7%97%D7%99%D7%9C%D7%AA_%D7%98%D7%95%D7%A4%D7%A1";
-                    $('#form_crate_item').attr('action', action_link)
-                    return true;
-                    event.preventDefault();
-                });
-            }
-        });
+        //                 return false;
+        //             }
+        //             if ( $( "#formInput_Item" ).val() === "" ) {
+        //                 $( "#error_item" ).text("נא למלא את כל שדות  ").show();
+        //                 $("#formInput_Item").css({"border" : "1px solid red"});
+        //                 return false;
+        //             }
+        //             var  wgServer = mw.config.get( 'wgServer' );
+        //             var  wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', '');
+        //             var action_link = wgServer+wgPagePath+"%D7%9E%D7%99%D7%95%D7%97%D7%93:%D7%AA%D7%97%D7%99%D7%9C%D7%AA_%D7%98%D7%95%D7%A4%D7%A1";
+        //             $('#form_crate_item').attr('action', action_link)
+        //             return true;
+        //             event.preventDefault();
+        //         });
+        //     }
+        // });
 
         /////////////////////////////////////////////////////////////////////
 
@@ -106,62 +106,83 @@
         });
 
         ////////////////////////////////////////////////////////////////////
-
         $(document).on("click", "#create_toggle", function (e) {
-
             e.preventDefault();
             if (isVisualEditorNotActiveted()) {
-
+                var $html = $('<div>'),
+                    $form  = $('<form>').attr({
+                        name:"createbox",
+                        id:"form-create-item",
+                        action:"action_link",
+                        method:"get",
+                    }),
+                    $name = $('<input>').attr({
+                        size:"30",
+                        id:"formInput_Item",
+                        placeholder:"הכנס את שם הפריט",
+                        class : "formInput input-item-name zero-padding float-right col-sm-12 col-md-7",
+                        name:"page_name",
+                        type:"text"
+                    }),
+                    $type = $('<select>').attr({
+                        id:"newItemForm",
+                        name:"newItemForm",
+                        class : "form-control col-md-4 col-sm-12 zero-padding",
+                    }),
+                    $form_input = $('<input>').attr({
+                        id:"form_id",
+                        name:"form",
+                        type:"hidden"
+                    }),
+                    $namespace = $('<input>').attr({
+                        id:"namespace_id",
+                        name:"namespace",
+                        type:"hidden"
+                    });
+                $
+                $form.append($name)
+                    .append($type)
+                    .append($form_input)
+                    .append($namespace)
+                    .append("<span id='error_item' class='pull-left'> </span>");
+                $type.append('<option disabled selected value> -- ' + mw.msg("modal-choose-item-type") + ' -- </option>')   
+                var allNamespacesAndTemplates = mw.config.get('wgFABNamespacesAndTemplates');
+                for (i=0 ; i< allNamespacesAndTemplates.length; i++){
+                    var item = allNamespacesAndTemplates[i];
+                    $type.append('<option value="' + item.namespace + '#' + item.form + '">' + item.title + '</option>');                
+                }
+                $type.bind("change",function(){
+                    $namespace.val(this.value.split('#')[0]);
+                    $form_input.val(this.value.split('#')[1]);
+                });
                 var dialog = bootbox.dialog({
                     title: 'צור פריט',
-                    message:
-                    "<form name=\"createbox\"  id=\"form_crate_item\" action=\"action_link\" method=\"get\" class=\"\" >" +
-                    " "+
-                    "" +
-                    "" +
-                    "<input size=\"30\"  id=\"formInput_Item\" placeholder=\"הכנס את שם הפריט\" autofocus=\"\" class=\"formInput input-item-name zero-padding  float-right col-sm-12 col-md-7\" name=\"page_name\"> "+
-                    "" +
-                    "<select class=\"form-control col-md-4 col-sm-12 zero-padding \" id=\"newItemForm\">\"<option disabled selected value> -- בחר סוג פריט -- </option>+\"</select>" +
-                    "" +""+
-                    "<input id=\"form_id\" type=\"hidden\" value=\"\" name=\"form\">" +
-                    "<input id=\"namespace_id\" type=\"hidden\" value=\"\" name=\"namespace\">" +
-                    "" +
-                    ""+"<span id='error_item' class='pull-left'> </span>" +
-                    "<input type=\"submit\" id=\"input_button_1\" class=\"forminput_button btn-success float-right \"  value=\"יצירת פריט\"> " +
-                    "</form>" +
-                    "" +
-                    " "+
-                    "" +
-                    "<script>" +
-                    "var option =\"\";" +
-                    "for (i=0 ; i< wgFABNamespacesAndTemplates.length; i++){" +
-                    "option += '<option value=\"' + wgFABNamespacesAndTemplates[i]['namespace'] + '#' + wgFABNamespacesAndTemplates[i]['form'] + '\">' + wgFABNamespacesAndTemplates[i]['title'] + '</option>';" +
-                    "}" +
-                    "$(\"#newItemForm\").append(option);" +
-                    "$(document).on(\"change\", \"#newItemForm\", function(){"
-                    +
-                    "$('#namespace_id').val(this.value.split('#')[0]);"+
-                    " $('#form_id').val(this.value.split('#')[1]);" +
-                    "});" +
+                    message:$form,
 
-                    "</script>" ,
+
                     buttons: {
                         cancel: {
                             label: mw.msg("modal-cancel-button") + ' <i class="fa fa-times"></i>'
+                        },
+                        save: {
+                            label: mw.msg("modal-create-button"),
+                            className: "create-new-item-submit"
                         }
+                        
                     }
                 });
 
                 $( "#form_crate_item" ).submit(function( event ) {
+                    event.preventDefault();
                     $("#newItemForm").css({"border" : "1px solid #ccc"});
                     if ( $('#namespace_id').val()  === "" ) {
-                        $( "#error_item" ).text("נא למלא את כל שדות  ").show();
+                        $( "#error_item" ).text(mw.msg("modal-please-fill-all-fields")).show();
                         $("#newItemForm").css({"border" : "1px solid red"});
 
                         return false;
                     }
                     if ( $( "#formInput_Item" ).val() === "" ) {
-                        $( "#error_item" ).text("נא למלא את כל שדות  ").show();
+                        $( "#error_item" ).text(mw.msg("modal-please-fill-all-fields")).show();
                         $("#formInput_Item").css({"border" : "1px solid red"});
                         return false;
                     }
@@ -170,7 +191,6 @@
                     var action_link = wgServer+wgPagePath+"%D7%9E%D7%99%D7%95%D7%97%D7%93:%D7%AA%D7%97%D7%99%D7%9C%D7%AA_%D7%98%D7%95%D7%A4%D7%A1";
                     $('#form_crate_item').attr('action', action_link)
                     return true;
-                    event.preventDefault();
                 });
             }
 
