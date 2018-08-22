@@ -156,24 +156,28 @@
                     $form_input.val(this.value.split('#')[1]);
                 });
                 var dialog = bootbox.dialog({
-                    title: 'צור פריט',
+                    title: mw.msg("modal-create-button"),
                     message:$form,
-
-
                     buttons: {
                         cancel: {
                             label: mw.msg("modal-cancel-button") + ' <i class="fa fa-times"></i>'
                         },
+                        // ,
                         save: {
                             label: mw.msg("modal-create-button"),
-                            className: "create-new-item-submit"
+                            className: "create-new-item-submit",
+                            callback: function(){
+                                $form.submit();
+                            }
+                            
                         }
                         
                     }
                 });
-
-                $( "#form_crate_item" ).submit(function( event ) {
-                    event.preventDefault();
+                
+                $form.submit(function( event ) {
+                    //console.log(event);
+                    //event.preventDefault();
                     $("#newItemForm").css({"border" : "1px solid #ccc"});
                     if ( $('#namespace_id').val()  === "" ) {
                         $( "#error_item" ).text(mw.msg("modal-please-fill-all-fields")).show();
@@ -188,9 +192,11 @@
                     }
                     var  wgServer = mw.config.get( 'wgServer' );
                     var  wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', '');
-                    var action_link = wgServer+wgPagePath+"%D7%9E%D7%99%D7%95%D7%97%D7%93:%D7%AA%D7%97%D7%99%D7%9C%D7%AA_%D7%98%D7%95%D7%A4%D7%A1";
-                    $('#form_crate_item').attr('action', action_link)
-                    return true;
+                    var action_link = wgServer + wgPagePath + ["Special:FormStart", $form_input.val(),$namespace.val() + ':' + $name.val()].join('/');
+                    //console.log('action', action_link);
+                    // $form.attr('action', action_link)
+                    location.href = action_link;
+                    return false;
                 });
             }
 
@@ -223,7 +229,7 @@
 
                 // Check if the current page is special page.
                 // Or user is not currently editing a page using VisualEditor
-                //console.log(currentUserInfoList)
+                console.log(currentUserInfoList,'currentUserInfoList');
                 if (!$('body').hasClass("ns-special") && isVisualEditorNotActiveted()) {
                     var pageTitle = mw.config.get('wgTitle');
                     // pageName also include the namespace.
