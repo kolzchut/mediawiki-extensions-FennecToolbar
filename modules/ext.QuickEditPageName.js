@@ -407,7 +407,7 @@
             var pageTitle = titleInput.getValue();
             //console.log(titleInput);
             if (pageTitle) {
-                var formatedTitle = pageTitle.toText();
+                var formatedTitle = pageTitle;
                 var selectedCategoriesText = getSelectedCategoriesInWikiText();
 
                 var actionsSwitch = {
