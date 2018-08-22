@@ -1,0 +1,27 @@
+#md-fab-menu .mfb-component__button--main {
+    background-color: #d23f31 !important;
+    cursor: pointer;
+}
+
+.ve-active #md-fab-menu .mfb-component__button--main {
+    background-color: #7d7c7c !important;
+    cursor: not-allowed;
+}
+
+ul#md-fab-menu {
+    padding: 0;
+}
+.input-item-name{
+    margin-right: 20px;
+
+
+}
+#input_button_1{
+    margin-right: 25px;
+    margin-top: 12px;
+}
+.input-item-name::placeholder{
+    color: #bababa;
+    opacity: 1;
+
+}

@@ -1,0 +1,279 @@
+/* @noflip */
+
+.oo-ui-iconElement .oo-ui-iconElement-icon,
+.oo-ui-iconElement.oo-ui-iconElement-icon {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-width: 24px;
+    width: 1.875em;
+    min-height: 24px;
+    height: 1.875em;
+}
+
+.oo-ui-processDialog-location {
+    height: auto!important;
+}
+
+legend.oo-ui-labelElement-label {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.oo-ui-buttonElement>.oo-ui-buttonElement-button {
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    font-weight: bold;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.oo-ui-dropdownWidget.oo-ui-iconElement .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
+    margin-right: 3em;
+    color: black;
+}
+
+.oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
+    top: 1em;
+    bottom: 1em;
+    max-height: calc(100% - 2em);
+    border: 0;
+    border-radius: 2px;
+    font-size: 16px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+}
+
+.oo-ui-textInputWidget.oo-ui-widget-disabled input,
+.oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
+    color: black;
+    text-shadow: 0 -1px 1px #ffffff;
+    border-color: #dddddd;
+    background-color: #f3f3f3;
+}
+
+.oo-ui-textInputWidget,
+.oo-ui-dropdownWidget {
+    max-width: 100%;
+}
+
+
+/*
+.oo-ui-icon-tag,
+.mw-ui-icon-tag:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons&image=tag&lang=he);
+}
+
+.oo-ui-icon-upload,
+.mw-ui-icon-upload:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons-content&image=upload&lang=he);
+}
+
+.oo-ui-indicator-down {
+background-image: url(/w/load.php?modules=oojs-ui.styles.indicators&image=down&lang=he);
+}
+
+.oo-ui-icon-close,
+.mw-ui-icon-close:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons&image=close&lang=he) !important;
+}
+
+.oo-ui-icon-code,
+.mw-ui-icon-code:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons&image=code&lang=he);
+}
+
+.oo-ui-indicator-required {
+background-image: url(/w/load.php?modules=oojs-ui.styles.indicators&image=required&lang=he);
+}
+
+.oo-ui-icon-add,
+.mw-ui-icon-add:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons&image=add&lang=he);
+}
+
+.oo-ui-icon-edit,
+.mw-ui-icon-edit:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons-editing-core&image=edit&lang=en) !important;
+}
+
+.oo-ui-icon-check,
+.mw-ui-icon-check:before {
+background-image: url(/w/load.php?modules=oojs-ui.styles.icons&image=check&variant=invert&lang=en);
+}
+
+.oo-ui-indicator-clear {
+background-image: url(/w/load.php?modules=oojs-ui.styles.indicators&image=clear&lang=he);
+}
+*/
+
+.oo-ui-capsuleItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-indicator-clear {
+    position: absolute;
+    top: 0;
+    left: 0.3em;
+    bottom: 0;
+    height: auto;
+}
+
+.oo-ui-window-frame {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+    -webkit-transition: box-shadow .3s;
+    transition: box-shadow .3s;
+}
+
+.materialDialog [role="combobox"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+}
+
+.materialDialog [role="menu"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+}
+
+
+/* @noflip */
+
+.materialDialog {
+    position: fixed;
+   /* overflow: hidden;*/
+    width: 100%;
+    right: 0;
+    padding-right: 20px;
+    padding-left: 20px;
+    -webkit-animation: fadeIn 1s .55s both;
+    animation: fadeIn 1s .55s both;
+    margin: 0;
+}
+
+.oo-ui-windowManager-modal>.oo-ui-dialog.oo-ui-window-active {
+    z-index: 999;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* תיקוני ממשק קטגוריות */
+
+div#categoriesSelector input[type="text"] {
+    width: auto!important;
+    padding: 5px;
+    height: 2em;
+}
+
+.oo-ui-textInputWidget.oo-ui-indicatorElement input, .oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
+    height: 2.275em;
+    border-radius: 0;
+    padding: 0 5px;
+}
+
+.oo-ui-dropdownWidget-handle {
+    padding: 0.5em 0;
+    height: 2.275em;
+    line-height: 1.275;
+    border: 1px solid #9aa0a7;
+    border-radius: 0px;
+}
+
+.ms-res-ctn {
+    width: 100%;
+    display: block;
+    overflow-y: auto;
+    position: static;
+}
+
+/* @noflip */
+.ms-ctn .ms-sel-item {
+    background: #F3F3F3;
+    color: #999;
+    float: right;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid #DDD;
+    margin: 2px;
+    padding: 3px;
+}
+/* @noflip */
+span.ms-helper {
+    color: #AAA;
+    font-size: 14px;
+    position: absolute;
+    text-align: left;
+    top: -1.5em;
+    left: 0;
+}
+
+.materialFieldset input {
+    font-size: 16px !important;
+}
+
+.ms-ctn .ms-trigger .ms-trigger-ico {
+    margin-top: 1em;
+}
+
+div#categoriesSelector {
+    width: 100%;
+    height: 2.275em;
+    display: inline-table;
+}
+
+span.oo-ui-labelElement-label {
+    font-weight: bold;
+}
+
+label.oo-ui-fieldLayout-body {
+    width: 100%;
+    font-size: 16px;
+}
+
+/* @noflip */
+
+.tingle-modal__close {
+    position: fixed;
+    z-index: 1000;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: none;
+    background: transparent;
+    color: #fff;
+    font-size: 40px;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.tingle-modal__close:hover {
+    color: rgba(34, 132, 161, 0.8);
+    background-color: transparent;
+}
+
