@@ -404,8 +404,8 @@
         ] );
 
         var mainFunction = function (dialog, action, windowManager) {
-            var pageTitle = titleInput.getTitle();
-
+            var pageTitle = titleInput.getValue();
+            //console.log(titleInput);
             if (pageTitle) {
                 var formatedTitle = pageTitle.toText();
                 var selectedCategoriesText = getSelectedCategoriesInWikiText();
