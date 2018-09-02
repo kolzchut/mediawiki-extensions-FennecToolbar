@@ -1,5 +1,5 @@
 /**
- * JavaScript for Kwiki Quick Create And Edit
+ * JavaScript for FennecToolbar Quick Create And Edit
  */
 (function (mw, $) {
 

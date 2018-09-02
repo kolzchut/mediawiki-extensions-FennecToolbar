@@ -1,17 +1,17 @@
 {
-    "name": "KwikiFAB",
+    "name": "FennecToolbar",
     "version": "0.3.0",
     "author": [
-        "[http://kwiki.co.il Kwiki]",
+        "[http://FennecToolbar.co.il FennecToolbar]",
         "[[mw:user:HagaiAsaban|Hagai Asaban]]",
         "[[mw:user:Yacohen|Yacohen]]"
     ],
-    "url": "doalogue-kwiki/KwikiFAB",
-    "descriptionmsg": "kwiki-fab-desc",
+    "url": "doalogue-FennecToolbar/FennecToolbar",
+    "descriptionmsg": "FennecToolbar-fab-desc",
     "license-name": "GPL v2",
     "type": "other",
     "AutoloadClasses": {
-        "KwikiFABHooks": "KwikiFAB.hooks.php"
+        "FennecToolbarHooks": "FennecToolbar.hooks.php"
     },
     "config": {
         "FABNamespacesAndTemplates": [],
@@ -20,11 +20,11 @@
     },
     "Hooks": {
         "BeforePageDisplay": [
-            "KwikiFABHooks::onBeforePageDisplay"
+            "FennecToolbarHooks::onBeforePageDisplay"
         ]
     },
     "MessagesDirs": {
-        "KwikiFAB": [
+        "FennecToolbar": [
             "i18n"
         ]
     },
@@ -279,7 +279,7 @@
                 "modal-if-delete-page"
             ]
         },
-        "ext.KwikiFAB": {
+        "ext.FennecToolbar": {
             "dependencies": [
                 "ext.MaterialDialog",
                 "ext.ApiActions",
@@ -291,10 +291,10 @@
                 "ext.QuickCreateAndEditCategories"
             ],
             "scripts": [
-                "modules/ext.KwikiFAB.js"                
+                "modules/ext.FennecToolbar.js"                
             ],
             "styles": [
-                "modules/ext.KwikiFAB.css"
+                "modules/ext.FennecToolbar.css"
             ],
             "messages": [               
                 "create-toggle-popup",
@@ -307,7 +307,7 @@
     },
     "ResourceFileModulePaths": {
         "localBasePath": "",
-        "remoteExtPath": "KwikiFAB"
+        "remoteExtPath": "FennecToolbar"
     },
     "SpecialPages": {},
     "manifest_version": 1

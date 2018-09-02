@@ -1,7 +1,7 @@
 fabApi = {};
 
 /**
- * JavaScript for Kwiki API Actions
+ * JavaScript for FennecToolbar API Actions
  */
 (function (mw, $) {
 
