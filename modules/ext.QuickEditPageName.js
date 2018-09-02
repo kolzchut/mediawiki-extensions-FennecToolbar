@@ -20,7 +20,12 @@
     }
 
     /////////////////////////////////////////////////////////////////////////////////
-
+    var fixTitle = function(title){
+        if( -1 == title.indexOf(':')){
+            title = mw.config.get('wgCanonicalNamespace') + ':' + title;
+        }
+        return title;
+    }
     /**
     * Remove the categories from the wiki text.
     */
@@ -163,7 +168,7 @@
                 if (editTitle.title == title.trim()){
                     disableButtonAbiltyToClick( true, notifyMessage, false );
                 } else {
-                    ApiCheckIsTitleVaild(title, function(res) {
+                    ApiCheckIsTitleVaild(fixTitle(title), function(res) {
                         isNewPageTitleVaild = (Boolean(res.query.pages[0].pageid) == false);
                         disableButtonAbiltyToClick( isNewPageTitleVaild, notifyMessage, true );
                     });
@@ -402,14 +407,16 @@
             //     align: 'top'
             // })
         ] );
-
+        //console.log(mw.config.get('wgCanonicalNamespace'))ף
         var mainFunction = function (dialog, action, windowManager) {
             var pageTitle = titleInput.getValue();
+            pageTitle = fixTitle(pageTitle);
             //console.log(titleInput);
             if (pageTitle) {
-                var formatedTitle = pageTitle;
+                var formatedTitle =  pageTitle;
+                
                 var selectedCategoriesText = getSelectedCategoriesInWikiText();
-
+                //console.log(formatedTitle);
                 var actionsSwitch = {
                     "delete": function(){
                         swal( {
@@ -430,6 +437,7 @@
                     },
                     "edit": function() {
                         var oldTitle = editTitle.pageName.trim();
+                        console.log(formatedTitle);
                         prepareWikiTextBeforeEditOrCreate(oldTitle, formatedTitle, selectedCategoriesText, false);
                         dialog.close();
                         windowManager.destroy();
@@ -518,18 +526,23 @@
                 });
 
                 // Wiki Text Without Categories.
-                var wikiText = removeCategoriesFromWikiText(templateWikiText, templateCategories);
-                var content = wikiText.concat(selectedCategoriesText);
+                //var wikiText = removeCategoriesFromWikiText(templateWikiText, templateCategories);
+                //var content = wikiText.concat(selectedCategoriesText);
                 var oldTitle = templateTitle.trim().replace(/_/g, ' ');
 
                 //console.log(wikiText, content, oldTitle, pageTitle);
 
-                if (isNewPage || pageTitle === oldTitle) {
+                if ( pageTitle !== oldTitle) {
                     ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
-                } else{
                     // in edit mode and page title is not equeal to old title.
                     ApiRenamePage(pageTitle, oldTitle, function () {
-                        ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
+                        $.simplyToast(mw.msg("edited-successfully"), 'success'); 
+
+                        setTimeout(function(){
+                            window.location.href = "/" + pageTitle;
+                            window.location.reload(true);
+                        }, 1500);
+                        //ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
                     });
                 }
             } );
