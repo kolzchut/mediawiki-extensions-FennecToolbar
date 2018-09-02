@@ -14,9 +14,9 @@
         "FennecToolbarHooks": "FennecToolbar.hooks.php"
     },
     "config": {
-        "FABNamespacesAndTemplates": [],
-        "FABExcludeCategories": [],
-        "FABPredefinedCategories": []
+        "FennecToolbarNamespacesAndTemplates": [],
+        "FennecToolbarExcludeCategories": [],
+        "FennecToolbarPredefinedCategories": []
     },
     "Hooks": {
         "BeforePageDisplay": [
