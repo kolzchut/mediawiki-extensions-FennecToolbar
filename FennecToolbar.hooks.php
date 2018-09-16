@@ -9,18 +9,18 @@
 class FennecToolbarHooks {
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin) {
 		
-        global $wgFABNamespacesAndTemplates;
-        global $wgFABPredefinedCategories;
-        global $wgFABExcludeCategories;
+        global $wgFennecToolbarNamespacesAndTemplates;
+        global $wgFennecToolbarPredefinedCategories;
+        global $wgFennecToolbarExcludeCategories;
 		
 		$user = $skin->getUser();
 		
 		// Check if the user is connect
 		if ( !$user->isAnon() ) {
 			$configs = array(
-                'wgFABNamespacesAndTemplates' => $wgFABNamespacesAndTemplates,
-                'wgFABExcludeCategories' => $wgFABExcludeCategories,
-                'wgFABPredefinedCategories' => $wgFABPredefinedCategories,
+                'wgFennecToolbarNamespacesAndTemplates' => $wgFennecToolbarNamespacesAndTemplates,
+                'wgFennecToolbarExcludeCategories' => $wgFennecToolbarExcludeCategories,
+                'wgFennecToolbarPredefinedCategories' => $wgFennecToolbarPredefinedCategories,
 			);
 			$out->addJsConfigVars( $configs );
 		

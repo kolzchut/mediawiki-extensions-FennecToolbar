@@ -350,13 +350,21 @@
                 style: 'multi'
             },
             searchHighlight: true,
-            fnDrawCallback: function() {
+            fnDrawCallback: function(oSettings) {
+                // I have no clue what this code did, but this is not working anymore
+
+
                 $('th').each(function(){
-                    var titleText = $(this).context.textContent;
-                    var curretTitle = $(this).context.title;
-                    if (!curretTitle){
-                        $(this).attr({ title: $(this).context.textContent });
-                    }
+                    $(this).attr('title',$(this).text().trim());
+                //     if( !$(this).context){
+                //         console.log($(this).context, this)
+                //         return;
+                //     } 
+                //     var titleText = $(this).context.textContent;
+                //     var curretTitle = $(this).context.title;
+                //     if (!curretTitle){
+                //         $(this).attr({ title: $(this).context.textContent });
+                //     }
                 });
             },
             columns: [

@@ -115,12 +115,12 @@
     var isTemplateTitleVaild = true;
     var isNewPageTitleVaild = true;
     
-    var wgFABNamespacesAndTemplates = mw.config.get('wgFABNamespacesAndTemplates');
+    var wgFennecToolbarNamespacesAndTemplates = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
     // check is Combined Namespaces And Templates are configured.
     
     var isCombinedNamespacesAndTemplates = false;
     
-    if (wgFABNamespacesAndTemplates && wgFABNamespacesAndTemplates.length > 0) {
+    if (wgFennecToolbarNamespacesAndTemplates && wgFennecToolbarNamespacesAndTemplates.length > 0) {
         isCombinedNamespacesAndTemplates = true;
     }
 
@@ -139,7 +139,7 @@
                 iconTitle: mw.msg("modal-namespace-selector-label")
             }
         } );
-        wgFABNamespacesAndTemplates.map(function (item) {
+        wgFennecToolbarNamespacesAndTemplates.map(function (item) {
                     var option = new OO.ui.MenuOptionWidget({
                         data: item.namespace + '#' + item.template,
                         label: item.title
@@ -389,7 +389,7 @@
 
             if(isCombinedNamespacesAndTemplates) {
 
-                wgFABNamespacesAndTemplates.map(function (item) {
+                wgFennecToolbarNamespacesAndTemplates.map(function (item) {
                     var option = new OO.ui.MenuOptionWidget({
                         data: item.namespace + '#' + item.template,
                         label: item.title
@@ -604,10 +604,10 @@
                     $.simplyToast(mw.msg("modal-popup-warning-title-missing"), 'danger');
                 }
             };
-            allPredefinedCategories = mw.config.get('wgFABPredefinedCategories');
-            excludeCategories = mw.config.get('wgFABExcludeCategories');
-            //allPredefinedCategories = mw.config.get('wgFABPredefinedCategories');
-            //console.log('excludeCategories', excludeCategories)
+            allPredefinedCategories = mw.config.get('wgFennecToolbarPredefinedCategories');
+            excludeCategories = mw.config.get('wgFennecToolbarExcludeCategories');
+            //allPredefinedCategories = mw.config.get('wgFennecToolbarPredefinedCategories');
+            //console.log('excludeCategories', excludeCategories, allPredefinedCategories)
             fabApi.loadPage(editTitle.pageName, function(data){
                 //console.log(data);
                 var firstAdded = false;
@@ -632,7 +632,7 @@
                             jQuery.each(predefinedCategoryResultsArr, function(index, item){
                                 predefinedCategoryResultsArr[index] = item.trim();
                             });
-                            //console.log('predefinedCategoryResultsArr', predefinedCategoryResultsArr)
+                            console.log('predefinedCategoryResultsArr', predefinedCategoryResultsArr)
                             //set unieqe
                             predefinedCategoryResultsArr = $.grep(predefinedCategoryResultsArr, function(v, k){
                                 return $.inArray(v ,predefinedCategoryResultsArr) === k && 
