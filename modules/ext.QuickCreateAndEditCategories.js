@@ -609,16 +609,19 @@
             //allPredefinedCategories = mw.config.get('wgFennecToolbarPredefinedCategories');
             //console.log('excludeCategories', excludeCategories, allPredefinedCategories)
             fabApi.loadPage(editTitle.pageName, function(data){
-                //console.log(data);
+                console.log(data);
                 var firstAdded = false;
                 for(var i = 0; i < allPredefinedCategories.length;i++){
                     var predefinedCategory = allPredefinedCategories[i],
                         predefinedCategoryRegStart = '|' + predefinedCategory + '=',
                         predefinedCategoryReg = new RegExp('\\' + predefinedCategoryRegStart + '.+'),
                         predefinedCategoryResults = data.parse.wikitext.match(predefinedCategoryReg)
-                    //console.log(predefinedCategory, predefinedCategoryResults[0], predefinedCategoryReg)                    
+                    console.log(predefinedCategory, predefinedCategoryResults[0], predefinedCategoryReg)                    
                     if(!predefinedCategoryResults || !predefinedCategoryResults.length || !predefinedCategoryResults[0]){
                         continue;
+                    }
+                    else{
+                        console.log('selected!!!', predefinedCategory);
                     }
                     for(var ii =0; ii < predefinedCategoryResults.length;ii++){
                         var predefinedCategoryResult = predefinedCategoryResults[ii],
@@ -690,15 +693,16 @@
                 var content = content.concat(selectedCategoriesText);
                 var oldTitle = templateTitle.trim().replace(/_/g, ' ');
 
-                //console.log(wikiText, content, oldTitle, pageTitle);
-
+                oldTitle = ApiFixTitle(oldTitle);
+                pageTitle = ApiFixTitle(pageTitle);
+                console.log(wikiText, content, oldTitle, pageTitle);
                 if (isNewPage || pageTitle === oldTitle) {
                     ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
                 } else{
                     // in edit mode and page title is not equeal to old title.
-                    ApiRenamePage(pageTitle, oldTitle, function () {                    
-                        ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
-                    });
+                    //ApiRenamePage(pageTitle, oldTitle, function () {                    
+                    ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
+                    //});
                 } 
             } ); 
                       

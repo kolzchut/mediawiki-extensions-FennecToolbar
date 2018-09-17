@@ -276,5 +276,15 @@ fabApi = {};
     window.ApiReloadPurge = reloadPurge;
     window.ApiDeletePage = deletePage;
     window.ApiLoadPageWikiText = loadPageWikiText;
+    window.ApiFixTitle = function(title){
+        if( -1 == title.indexOf(':')){
+            var prefix = mw.config.get('wgCanonicalNamespace');
+            if(prefix){
+                prefix += ':';
+            }
+            title = prefix + title;
+        }
+        return title;
+    }
 
 }(mediaWiki, jQuery));

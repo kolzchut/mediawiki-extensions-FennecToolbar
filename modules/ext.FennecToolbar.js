@@ -146,7 +146,7 @@
                     .append($namespace)
                     .append("<span id='error_item' class='pull-left'> </span>");
                 $type.append('<option disabled selected value> -- ' + mw.msg("modal-choose-item-type") + ' -- </option>')   
-                var allNamespacesAndTemplates = mw.config.get('wgFABNamespacesAndTemplates');
+                var allNamespacesAndTemplates = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
                 for (i=0 ; i< allNamespacesAndTemplates.length; i++){
                     var item = allNamespacesAndTemplates[i];
                     $type.append('<option value="' + item.namespace + '#' + item.form + '">' + item.title + '</option>');                

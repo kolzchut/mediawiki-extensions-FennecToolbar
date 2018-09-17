@@ -20,12 +20,7 @@
     }
 
     /////////////////////////////////////////////////////////////////////////////////
-    var fixTitle = function(title){
-        if( -1 == title.indexOf(':')){
-            title = mw.config.get('wgCanonicalNamespace') + ':' + title;
-        }
-        return title;
-    }
+    
     /**
     * Remove the categories from the wiki text.
     */
@@ -168,7 +163,7 @@
                 if (editTitle.title == title.trim()){
                     disableButtonAbiltyToClick( true, notifyMessage, false );
                 } else {
-                    ApiCheckIsTitleVaild(fixTitle(title), function(res) {
+                    ApiCheckIsTitleVaild(ApiFixTitle(title), function(res) {
                         isNewPageTitleVaild = (Boolean(res.query.pages[0].pageid) == false);
                         disableButtonAbiltyToClick( isNewPageTitleVaild, notifyMessage, true );
                     });
@@ -410,7 +405,7 @@
         //console.log(mw.config.get('wgCanonicalNamespace'))ף
         var mainFunction = function (dialog, action, windowManager) {
             var pageTitle = titleInput.getValue();
-            pageTitle = fixTitle(pageTitle);
+            pageTitle = ApiFixTitle(pageTitle);
             //console.log(titleInput);
             if (pageTitle) {
                 var formatedTitle =  pageTitle;
