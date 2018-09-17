@@ -616,13 +616,11 @@
                         predefinedCategoryRegStart = '|' + predefinedCategory + '=',
                         predefinedCategoryReg = new RegExp('\\' + predefinedCategoryRegStart + '.+'),
                         predefinedCategoryResults = data.parse.wikitext.match(predefinedCategoryReg)
-                    console.log(predefinedCategory, predefinedCategoryResults[0], predefinedCategoryReg)                    
+                    //console.log(predefinedCategory, predefinedCategoryResults[0], predefinedCategoryReg)                    
                     if(!predefinedCategoryResults || !predefinedCategoryResults.length || !predefinedCategoryResults[0]){
                         continue;
                     }
-                    else{
-                        console.log('selected!!!', predefinedCategory);
-                    }
+                    
                     for(var ii =0; ii < predefinedCategoryResults.length;ii++){
                         var predefinedCategoryResult = predefinedCategoryResults[ii],
                             predefinedCategoryResultsArr = predefinedCategoryResult.replace(predefinedCategoryRegStart,'').split(',');
