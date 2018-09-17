@@ -54,8 +54,8 @@
         //             "" +
         //             "<script>" +
         //             "var option =\"\";" +
-        //             "for (i=0 ; i< wgFABNamespacesAndTemplates.length; i++){" +
-        //             "option += '<option value=\"' + wgFABNamespacesAndTemplates[i]['namespace'] + '#' + wgFABNamespacesAndTemplates[i]['form'] + '\">' + wgFABNamespacesAndTemplates[i]['title'] + '</option>';" +
+        //             "for (i=0 ; i< wgFennecToolbarNamespacesAndTemplates.length; i++){" +
+        //             "option += '<option value=\"' + wgFennecToolbarNamespacesAndTemplates[i]['namespace'] + '#' + wgFennecToolbarNamespacesAndTemplates[i]['form'] + '\">' + wgFennecToolbarNamespacesAndTemplates[i]['title'] + '</option>';" +
         //             "}" +
         //             "$(\"#newItemForm\").append(option);" +
         //             "$(document).on(\"change\", \"#newItemForm\", function(){"

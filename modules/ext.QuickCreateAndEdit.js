@@ -10,12 +10,12 @@
     var isTemplateTitleVaild = true;
     var isNewPageTitleVaild = true;
     
-    var wgFABNamespacesAndTemplates = mw.config.get('wgFABNamespacesAndTemplates');
+    var wgFennecToolbarNamespacesAndTemplates = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
     // check is Combined Namespaces And Templates are configured.
     
     var isCombinedNamespacesAndTemplates = false;
     
-    if (wgFABNamespacesAndTemplates && wgFABNamespacesAndTemplates.length > 0) {
+    if (wgFennecToolbarNamespacesAndTemplates && wgFennecToolbarNamespacesAndTemplates.length > 0) {
         isCombinedNamespacesAndTemplates = true;
     }
 
@@ -266,7 +266,7 @@
 
             if(isCombinedNamespacesAndTemplates) {
 
-                wgFABNamespacesAndTemplates.map(function (item) {
+                wgFennecToolbarNamespacesAndTemplates.map(function (item) {
                     var option = new OO.ui.MenuOptionWidget({
                         data: item.namespace + '#' + item.template,
                         label: item.title
