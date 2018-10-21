@@ -197,8 +197,9 @@ fabApi = {};
             iiprop: 'url|comment|timestamp|user'
         };
         if(apiContinue) {
-            apiConfig["gaicontinue"] = apiContinue.gaicontinue;
+            apiConfig["fucontinue"] = apiContinue.fucontinue;
         }
+
         api.get(apiConfig).done(callbackFunc).fail(failFunc);
     };
     

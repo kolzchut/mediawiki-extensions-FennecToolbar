@@ -2,7 +2,7 @@
  * JavaScript for Files List
  */
 (function (mw, $) {
-
+    var allDataLoaded, allfilesData, lastContinue;
     function setSortDataTableWithMoment(format, locale) {
 
         var types = $.fn.dataTable.ext.type;
@@ -83,19 +83,19 @@
                     if (currentPageTitle === pageTitle) {
                         isFileChecked = true;
                     }
-                    fileUsageLinks += '<a href="/'+ pageTitle + '"> '+ pageTitle + '</a>';
+                    fileUsageLinks += '<a target="_blank" href="/'+ pageTitle + '"> '+ pageTitle + '</a>';
                 } );
             }
 
             tableData.push( [
                 isFileChecked,
-                '<a href="' + imageUrl + '" title="' + linkTitle + '" ><img src="' + imageUrl + '" alt="' + fileName + '" class="imgList"></a>',
-                '<a href="/' + fileTitle + '" title="' + fileLinkTitle + '" id="' + pageId + '">' + fileName + '</a> <button type="button" class="copy-btn btn-default btn-xs" data-type="attribute" data-attr-name="data-clipboard-text" data-model="couponCode" data-clipboard-text="' + fileName + '" title="העתקת שם הקובץ"><i class="fa fa-clipboard"></i></button>',
+                '<a target="_blank" href="' + imageUrl + '" title="' + linkTitle + '" ><img src="' + imageUrl + '" alt="' + fileName + '" class="imgList"></a>',
+                '<a target="_blank" href="/' + fileTitle + '" title="' + fileLinkTitle + '" id="' + pageId + '">' + fileName + '</a> <button type="button" class="copy-btn btn-default btn-xs" data-type="attribute" data-attr-name="data-clipboard-text" data-model="couponCode" data-clipboard-text="' + fileName + '" title="העתקת שם הקובץ"><i class="fa fa-clipboard"></i></button>',
                 fileComment,
                 fileUsageLinks,
-                '<a href="/user:' + userUpload + '" title="' + userUpload + '">' + userUpload + '</a>',
+                '<a target="_blank" href="/user:' + userUpload + '" title="' + userUpload + '">' + userUpload + '</a>',
                 dateTime.format("DD/MM/YY HH:mm"),
-                '<a href="#" class="deleteFileBtn" title="' + fileTitle + '">' +
+                '<a target="_blank" href="#" class="deleteFileBtn" title="' + fileTitle + '">' +
                 '<i class="fa fa-trash"></i>' +
                 '</a>',
                 attachFileExtensionCheck(fileExtension, fileName)
@@ -420,7 +420,14 @@
                     increaseArea: '20%', // optional
                     inherit: 'title'
                 });
-
+                $('#idt-table_wrapper').on('dblclick','tr[role="row"]', function(){
+                    var fileSelected = $(this).find('.file-link a').text();
+                    if(fileSelected && filesListActiveInput){
+                        filesListActiveInput.val(fileSelected);
+                        $('.tingle-modal__close').trigger('click');
+                    }
+                    //console.log();
+                });
                 // fix the bug of title of the checkbox.
                 $('input[type="checkbox"]').each( function() {
                     var currentTitle = $(this)[0].title;
@@ -449,15 +456,25 @@
 
 
     var loadAllFilesData = function(apiContinue="") {
-
+        
+        if(window.FennecBarAllFiles && window.FennecBarAllFiles.length){
+            allfilesData = window.FennecBarAllFiles;
+            setDataTableData();
+            return;
+        }
+        else{
+            console.log(allfilesData);
+        }
         ApiLoadAllFilesData(function (res) {
+
             allfilesData = _.union(allfilesData, _.values(res.query.pages));
 
-			console.log(res);
-
-            if(res.continue) {
+			
+            if(res.continue && lastContinue != res.continue.fucontinue) {
+                lastContinue = res.continue.fucontinue;
                 loadAllFilesData(res.continue);
             } else {
+                window.FennecBarAllFiles = allfilesData;
                 setDataTableData();
             }
         }, apiContinue);
@@ -481,6 +498,7 @@
     $(function () {
         $(document).on("click", "#files_toggle", function (e) {
             e.preventDefault();
+            window.filesListActiveInput = $(this).next().find(':input');
             var isVeNotActive = (window.location.href.indexOf("veaction") === -1);
             $('#md-fab-menu').attr('data-mfb-state', 'close');
 
@@ -492,7 +510,6 @@
         });
     });
 
-    var allfilesData = [];
 
     window.LoadAllFilesModal = loadAllFilesModal;
 
