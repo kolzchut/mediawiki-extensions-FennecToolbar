@@ -2,7 +2,7 @@
  * JavaScript for Files List
  */
 (function (mw, $) {
-    var allDataLoaded, allfilesData, lastContinue;
+    var allDataLoaded, allfilesData = {}, lastContinue;
     function setSortDataTableWithMoment(format, locale) {
 
         var types = $.fn.dataTable.ext.type;
@@ -57,7 +57,7 @@
         var regex = new RegExp('_', 'g');
         var currentPageTitle = mw.config.get('wgTitle');
 
-        allfilesData.map(function (item) {
+        _.values(allfilesData).map(function (item) {
 			var imageItem = item.imageinfo[0];
 			var fileTitle = item.title;
 			var currentTitle = new mw.Title(fileTitle);
@@ -101,6 +101,7 @@
                 attachFileExtensionCheck(fileExtension, fileName)
             ] );
         } );
+        console.log(tableData.length, allfilesData.length);
         loadFilesLists(tableData);
     };
 
@@ -466,8 +467,12 @@
             console.log(allfilesData);
         }
         ApiLoadAllFilesData(function (res) {
-
-            allfilesData = _.union(allfilesData, _.values(res.query.pages));
+            for(let fKey in res.query.pages){
+                if(!allfilesData[fKey]){
+                    allfilesData[fKey] = res.query.pages[fKey];
+                }
+            }
+            //allfilesData = _.union(allfilesData, _.values(res.query.pages));
 
 			
             if(res.continue && lastContinue != res.continue.fucontinue) {
@@ -475,6 +480,7 @@
                 loadAllFilesData(res.continue);
             } else {
                 window.FennecBarAllFiles = allfilesData;
+                console.log(allfilesData.length)
                 setDataTableData();
             }
         }, apiContinue);
