@@ -2,7 +2,15 @@
  * JavaScript for FennecToolbar Menu
  */
 (function (mw, $) {
-
+   console.log('loaded!');
+    if(!window.fennecInited){
+        console.log('loaded first!');
+        window.fennecInited = true;
+    }
+    else{
+        console.log('loaded twice!');
+        return;
+    }
     var getKey = function (array, value) {
         for (var key in array) {
             val = array[key];
