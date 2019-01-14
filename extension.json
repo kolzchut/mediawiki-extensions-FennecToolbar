@@ -49,6 +49,9 @@
                 "modal-delete-message"
             ]
         },
+        "ext.bootbox" : {
+            "scripts": [ "lib/bootbox/bootbox.js"]
+        },
         "ext.MaterialDialog": {
             "dependencies": [
                 "ext.MaterialFAB",                
@@ -285,6 +288,7 @@
             "dependencies": [
                 "ext.MaterialDialog",
                 "ext.ApiActions",
+                "ext.bootbox",
                 "ext.QuickCreateAndEdit",
                 "ext.DragAndDropUpload",
                 "ext.FilesList",                
