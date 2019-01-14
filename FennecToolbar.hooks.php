@@ -33,10 +33,10 @@ class FennecToolbarHooks {
                 'ext.QuickCreateAndEdit',
                 'ext.FennecToolbar'
 			) );
-		}
-		if($wgFennecToolbarAddToolbar){
-			$templateParser = new TemplateParser( __DIR__ . '/templates');
-			$out->addHtml($templateParser->processTemplate('side-toolbar',[]));
+			if($wgFennecToolbarAddToolbar){
+				$templateParser = new TemplateParser( __DIR__ . '/templates');
+				$out->addHtml($templateParser->processTemplate('side-toolbar',[]));
+			}
 		}
 		return true;
 	}
