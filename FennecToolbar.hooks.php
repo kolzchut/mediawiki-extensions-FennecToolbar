@@ -12,6 +12,7 @@ class FennecToolbarHooks {
         global $wgFennecToolbarNamespacesAndTemplates;
         global $wgFennecToolbarPredefinedCategories;
         global $wgFennecToolbarExcludeCategories;
+        global $wgFennecToolbarAddToolbar;
 		
 		$user = $skin->getUser();
 		
@@ -33,8 +34,10 @@ class FennecToolbarHooks {
                 'ext.FennecToolbar'
 			) );
 		}
-		$templateParser = new TemplateParser( __DIR__ . '/templates');
-		$out->addHtml($templateParser->processTemplate('side-toolbar',[]));
+		if($wgFennecToolbarAddToolbar){
+			$templateParser = new TemplateParser( __DIR__ . '/templates');
+			$out->addHtml($templateParser->processTemplate('side-toolbar',[]));
+		}
 		return true;
 	}
 }
