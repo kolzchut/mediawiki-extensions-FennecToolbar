@@ -33,7 +33,8 @@ class FennecToolbarHooks {
                 'ext.FennecToolbar'
 			) );
 		}
-		
+		$templateParser = new TemplateParser( __DIR__ . '/templates');
+		$out->addHtml($templateParser->processTemplate('side-toolbar',[]));
 		return true;
 	}
 }

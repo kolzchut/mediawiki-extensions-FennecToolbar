@@ -136,7 +136,8 @@
                 "title-date"
             ],
             "templates": {
-                "data-table.mustache" : "templates/data-table.mustache"
+                "data-table.mustache" : "templates/data-table.mustache",
+                "side-toolbar.mustache" : "templates/side-toolbar.mustache"
             }           
         },
         "ext.DragAndDropUpload": {
@@ -294,7 +295,8 @@
                 "modules/ext.FennecToolbar.js"                
             ],
             "styles": [
-                "modules/ext.FennecToolbar.css"
+                "modules/ext.FennecToolbar.css",
+                "modules/ext.fenec-toolbar.less"
             ],
             "messages": [               
                 "create-toggle-popup",
