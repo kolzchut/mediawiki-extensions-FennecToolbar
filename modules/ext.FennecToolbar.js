@@ -114,7 +114,7 @@
         });
 
         ////////////////////////////////////////////////////////////////////
-        $(document).on("click", "#create_toggle-fennec-toolbar", function (e) {
+        $(document).on("click", "#create_toggle,#create_toggle2", function (e) {
             e.preventDefault();
             if (isVisualEditorNotActiveted()) {
                 var $html = $('<div>'),

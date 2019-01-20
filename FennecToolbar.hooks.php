@@ -35,7 +35,9 @@ class FennecToolbarHooks {
 			) );
 			if($wgFennecToolbarAddToolbar){
 				$templateParser = new TemplateParser( __DIR__ . '/templates');
-				$out->addHtml($templateParser->processTemplate('side-toolbar',[]));
+				$out->addHtml($templateParser->processTemplate('side-toolbar',[
+					'tooltip_side' => 'right'
+				]));
 			}
 		}
 		return true;

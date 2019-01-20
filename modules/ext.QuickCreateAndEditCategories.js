@@ -63,6 +63,7 @@
                     predefinedCategories.addRecords(name, selectedCategories);
                     $(CategoriesSelector).on('selectionchange', function(e,_this,records){
                             predefinedCategories.addRecords(name, records.map(function(part){ return part.id}));
+                            disableButtonAbiltyToClick(true);
                         })
                     //console.log('CategoriesSelector', CategoriesSelector, predefinedCategories.intervalsOfSelectors[nameMod], nameMod);
                     $('#categoriesSelector-' + nameMod).data('selector', CategoriesSelector);
@@ -197,7 +198,7 @@
     */
     var disableButtonAbiltyToClick = function (isVaild, notifyMessage ,isNotifyDisplay) {
         var mainButton = $("#model-main-button");
-        
+        console.error(mainButton)
         if (isVaild) {
             mainButton.toggleClass('oo-ui-widget-disabled', false);
             mainButton.toggleClass('oo-ui-widget-enabled', true);
