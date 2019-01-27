@@ -187,20 +187,27 @@
                     //console.log(event);
                     //event.preventDefault();
                     $("#newItemForm").css({"border" : "1px solid #ccc"});
-                    if ( $('#namespace_id').val()  === "" ) {
-                        $( "#error_item" ).text(mw.msg("modal-please-fill-all-fields")).show();
-                        $("#newItemForm").css({"border" : "1px solid red"});
 
-                        return false;
-                    }
                     if ( $( "#formInput_Item" ).val() === "" ) {
                         $( "#error_item" ).text(mw.msg("modal-please-fill-all-fields")).show();
                         $("#formInput_Item").css({"border" : "1px solid red"});
                         return false;
                     }
-                    var  wgServer = mw.config.get( 'wgServer' );
-                    var  wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', '');
-                    var action_link = wgServer + wgPagePath + ["Special:FormStart", $form_input.val(),$namespace.val() + ':' + $name.val()].join('/');
+                    var formName, namespace = $namespace.val();
+                    if(namespace){
+                        let formsPerNamespaces = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
+                        for(var i = 0; i < formsPerNamespaces.length; i++){
+                            if( namespace == formsPerNamespaces[i].namespace){
+                                formName = formsPerNamespaces[i].form;
+                            }
+                        }
+                    }
+                    var wgServer = mw.config.get( 'wgServer' ),
+                        wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
+                        pageName = (namespace ? namespace + ':' : '') + $name.val(),
+                        linkPath = formName ? ["Special:FormStart",formName,pageName].join('/') : pageName + '?action=edit';
+
+                    var action_link = wgServer + wgPagePath + linkPath;
                     //console.log('action', action_link);
                     // $form.attr('action', action_link)
                     location.href = action_link;
