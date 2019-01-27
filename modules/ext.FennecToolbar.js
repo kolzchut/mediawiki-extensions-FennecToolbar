@@ -148,8 +148,8 @@
                         type:"hidden"
                     });
                 $
-                $form.append($name)
-                    .append($type)
+                $form.append($type)
+                    .append($name)
                     .append($form_input)
                     .append($namespace)
                     .append("<span id='error_item' class='pull-left'> </span>");
