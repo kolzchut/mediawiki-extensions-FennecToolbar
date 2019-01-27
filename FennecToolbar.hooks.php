@@ -42,9 +42,7 @@ class FennecToolbarHooks {
 				]));
 			}
 			if($wgFennecToolbarAddFontawesome){
-				$out->addModules([
-					"ext.fennec.separate.fontawesome"
-					]);
+				$out->addHeadItem('fennect-fontawesome',$wgFennecToolbarAddFontawesome );
 			}
 			if($wgFennecToolbarAddBootstrap){
 				$out->addModules([
