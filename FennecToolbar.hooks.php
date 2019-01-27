@@ -41,9 +41,9 @@ class FennecToolbarHooks {
 					'tooltip_side' => 'right'
 				]));
 			}
-			if($wgFennecToolbarAddFS){
+			if($wgFennecToolbarAddFontawesome){
 				$out->addModules([
-					"ext.fennec.separate.fontawesomes"
+					"ext.fennec.separate.fontawesome"
 					]);
 			}
 			if($wgFennecToolbarAddBootstrap){

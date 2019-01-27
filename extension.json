@@ -64,7 +64,7 @@
         },
         "ext.fennec.separate.fontawesome" :{
              "styles" : [
-                "fontawesome/web/css/fontawesome-all.min.css"
+                "lib/fontawesome/web/css/fontawesome-all.min.css"
             ]
         },
         "ext.MaterialDialog": {
