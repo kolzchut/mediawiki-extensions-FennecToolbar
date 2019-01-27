@@ -13,6 +13,8 @@ class FennecToolbarHooks {
         global $wgFennecToolbarPredefinedCategories;
         global $wgFennecToolbarExcludeCategories;
         global $wgFennecToolbarAddToolbar;
+        global $wgFennecToolbarAddBootstrap;
+        global $wgFennecToolbarAddFS;
 		
 		$user = $skin->getUser();
 		
@@ -38,6 +40,16 @@ class FennecToolbarHooks {
 				$out->addHtml($templateParser->processTemplate('side-toolbar',[
 					'tooltip_side' => 'right'
 				]));
+			}
+			if($wgFennecToolbarAddFS){
+				$out->addModules([
+					"ext.fennec.separate.fontawesomes"
+					]);
+			}
+			if($wgFennecToolbarAddBootstrap){
+				$out->addModules([
+					"ext.fennec.separate.bootstrap"
+					]);
 			}
 		}
 		return true;
