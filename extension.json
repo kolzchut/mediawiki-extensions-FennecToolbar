@@ -15,7 +15,7 @@
     },
     "config": {
         "FennecToolbarAddToolbar": false,
-        "FennecToolbarAddFS": false,
+        "FennecToolbarAddFontawesome": false,
         "FennecToolbarAddBootstrap": false,
         "FennecToolbarNamespacesAndTemplates": [],
         "FennecToolbarExcludeCategories": [],

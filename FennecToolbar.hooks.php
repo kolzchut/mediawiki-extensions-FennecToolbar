@@ -14,7 +14,7 @@ class FennecToolbarHooks {
         global $wgFennecToolbarExcludeCategories;
         global $wgFennecToolbarAddToolbar;
         global $wgFennecToolbarAddBootstrap;
-        global $wgFennecToolbarAddFS;
+        global $wgFennecToolbarAddFontawesome;
 		
 		$user = $skin->getUser();
 		
