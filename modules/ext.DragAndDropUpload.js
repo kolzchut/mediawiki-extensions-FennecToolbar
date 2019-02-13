@@ -39,6 +39,7 @@
             contentType: false,
             processData: false,
             type: 'POST',
+            format:'json',
             data: formdata, //the formdata object we created above
             success: function () {
                 ApiReloadPurge(formatedFileName, function () {
