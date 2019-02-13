@@ -37,8 +37,17 @@ class FennecToolbarHooks {
 			) );
 			if($wgFennecToolbarAddToolbar){
 				$templateParser = new TemplateParser( __DIR__ . '/templates');
+				$advancedEdit = "veaction=edit";
+				$title = $out->getTitle();
+				if(class_exists('PFFormLinker')){
+					$isEditableByForm = PFFormLinker::getDefaultFormsForPage($title);
+					if($isEditableByForm && count($isEditableByForm)){
+						$advancedEdit = "action=formedit";
+					}
+				}
 				$out->addHtml($templateParser->processTemplate('side-toolbar',[
-					'tooltip_side' => 'right'
+					'tooltip_side' => 'right',
+					'advanced_edit' => $advancedEdit,
 				]));
 			}
 			if($wgFennecToolbarAddFontawesome){
