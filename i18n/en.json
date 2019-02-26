@@ -80,6 +80,9 @@
     "drag-n-drop": "Drag and Drop",
     "or": "OR",
     "spni-insert-item-name":"Insert item name",
+    "fennec-toolbar-purge-error": "Page refresh failed",
+    "fennec-toolbar-purge-success": "Page refresh succseed",
+    "fennec-toolbar-purge-start": "Page refresh fired. Please wait",
     "choose-files": "Choose Files"
     
 }

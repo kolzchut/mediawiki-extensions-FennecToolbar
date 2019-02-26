@@ -219,6 +219,19 @@
 
         /////////////////////////////////////////////////////////////////////////
 
+        $(document).on("click", "#f-purge", function (e) {
+            $.simplyToast(mw.msg("fennec-toolbar-purge-start"), 'success'); 
+            ApiReloadPurgeByIframe( function(success){
+                if( success ){
+                    $.simplyToast(mw.msg("fennec-toolbar-purge-success"), 'success'); 
+                }
+                else{
+                    $.simplyToast(mw.msg("fennec-toolbar-purge-error"), 'error'); 
+                }
+            });
+            return false;
+
+        });
         $(document).on("click", "#ve_edit_toggle", function (e) {
             e.preventDefault();
 

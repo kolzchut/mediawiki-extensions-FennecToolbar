@@ -49,6 +49,9 @@
                 "modal-continue-to-page",
                 "modal-close-button",
                 "modal-delete-title",
+                "fennec-toolbar-purge-error",
+                "fennec-toolbar-purge-success",
+                "fennec-toolbar-purge-start",
                 "modal-delete-message"
             ]
         },
