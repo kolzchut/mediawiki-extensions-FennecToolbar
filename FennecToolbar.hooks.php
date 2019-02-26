@@ -15,6 +15,7 @@ class FennecToolbarHooks {
         global $wgFennecToolbarAddToolbar;
         global $wgFennecToolbarAddBootstrap;
         global $wgFennecToolbarAddFontawesome;
+        global $wgFennecToolbarFontType;
 		
 		$user = $skin->getUser();
 		
@@ -47,6 +48,7 @@ class FennecToolbarHooks {
 				}
 				$out->addHtml($templateParser->processTemplate('side-toolbar',[
 					'tooltip_side' => 'right',
+					'font_type' => $wgFennecToolbarFontType,
 					'advanced_edit' => $advancedEdit,
 				]));
 			}
