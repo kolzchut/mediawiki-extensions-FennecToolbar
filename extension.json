@@ -17,6 +17,7 @@
         "FennecToolbarAddToolbar": false,
         "FennecToolbarAddFontawesome": false,
         "FennecToolbarAddBootstrap": false,
+        "FennecToolbarFontType": "fal",
         "FennecToolbarNamespacesAndTemplates": [],
         "FennecToolbarExcludeCategories": [],
         "FennecToolbarPredefinedCategories": []
