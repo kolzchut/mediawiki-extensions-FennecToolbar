@@ -323,8 +323,7 @@
                 "modules/ext.FennecToolbar.js"                
             ],
             "styles": [
-                "modules/ext.FennecToolbar.css",
-                "modules/ext.fenec-toolbar.less"
+                "modules/ext.FennecToolbar.css"
             ],
             "messages": [               
                 "create-toggle-popup",

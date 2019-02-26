@@ -38,20 +38,33 @@ class FennecToolbarHooks {
                 'ext.FennecToolbar'
 			) );
 			if($wgFennecToolbarAddToolbar){
+				$title = $skin->getTitle();
+				$edit_url = $title->getEditURL();
+				$vedit_url = preg_replace('/action=edit/', 'veaction=edit', $edit_url);
+				$history_url = self::replaceAction($edit_url, 'history');
+				$purge_url = self::replaceAction($edit_url, 'purge');
+				
 				$templateParser = new TemplateParser( __DIR__ . '/templates');
-				$advancedEdit = "veaction=edit";
+				$advancedEdit = $vedit_url;
 				$title = $out->getTitle();
 				if(class_exists('PFFormLinker')){
 					$isEditableByForm = PFFormLinker::getDefaultFormsForPage($title);
 					if($isEditableByForm && count($isEditableByForm)){
-						$advancedEdit = "action=formedit";
+						$advancedEdit = self::replaceAction($edit_url, 'formedit');;
 					}
 				}
-				$out->addHtml($templateParser->processTemplate('side-toolbar',[
+
+				$mustach_params = [
 					'tooltip_side' => 'right',
 					'font_type' => $wgFennecToolbarFontType,
 					'advanced_edit' => $advancedEdit,
-				]));
+					'edit_url' => $edit_url,
+					'purge_url' => $purge_url,
+					'history_url' => $history_url,
+					'vedit_url' => $vedit_url,
+				];
+				//die(print_r($mustach_params));
+				$out->addHtml($templateParser->processTemplate('side-toolbar',$mustach_params));
 			}
 			if($wgFennecToolbarAddFontawesome){
 				$out->addHeadItem('fennect-fontawesome',$wgFennecToolbarAddFontawesome );
@@ -64,4 +77,8 @@ class FennecToolbarHooks {
 		}
 		return true;
 	}
+	public static function replaceAction( $url, $action) {
+		return preg_replace('/action=edit/', "action=$action", $url);
+	}
+
 }
