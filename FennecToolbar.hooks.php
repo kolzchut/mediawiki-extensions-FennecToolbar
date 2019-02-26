@@ -15,6 +15,7 @@ class FennecToolbarHooks {
         global $wgFennecToolbarAddToolbar;
         global $wgFennecToolbarAddBootstrap;
         global $wgFennecToolbarAddFontawesome;
+        global $wgFennecToolbarFontType;
 		
 		$user = $skin->getUser();
 		
@@ -33,6 +34,7 @@ class FennecToolbarHooks {
                 'ext.FilesList',
 				'ext.DragAndDropUpload',
                 'ext.QuickCreateAndEdit',
+                'ext.FennecToolbar.first',
                 'ext.FennecToolbar'
 			) );
 			if($wgFennecToolbarAddToolbar){
@@ -47,6 +49,7 @@ class FennecToolbarHooks {
 				}
 				$out->addHtml($templateParser->processTemplate('side-toolbar',[
 					'tooltip_side' => 'right',
+					'font_type' => $wgFennecToolbarFontType,
 					'advanced_edit' => $advancedEdit,
 				]));
 			}

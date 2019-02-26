@@ -17,6 +17,7 @@
         "FennecToolbarAddToolbar": false,
         "FennecToolbarAddFontawesome": false,
         "FennecToolbarAddBootstrap": false,
+        "FennecToolbarFontType": "fal",
         "FennecToolbarNamespacesAndTemplates": [],
         "FennecToolbarExcludeCategories": [],
         "FennecToolbarPredefinedCategories": []
@@ -298,6 +299,12 @@
                 "modal-delete-button",
                 "modal-cancel-button",
                 "modal-if-delete-page"
+            ]
+        },
+        "ext.FennecToolbar.first": {
+            "position": "top",
+            "styles": [
+                "modules/ext.fennec-toolbar.less"
             ]
         },
         "ext.FennecToolbar": {
