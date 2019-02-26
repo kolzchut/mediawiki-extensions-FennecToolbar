@@ -467,9 +467,11 @@
             console.log(allfilesData);
         }
         ApiLoadAllFilesData(function (res) {
-            for(let fKey in res.query.pages){
-                if(!allfilesData[fKey]){
-                    allfilesData[fKey] = res.query.pages[fKey];
+            if( res.query && res.query.pages ){
+                for(let fKey in res.query.pages){
+                    if(!allfilesData[fKey]){
+                        allfilesData[fKey] = res.query.pages[fKey];
+                    }
                 }
             }
             //allfilesData = _.union(allfilesData, _.values(res.query.pages));
@@ -480,7 +482,7 @@
                 loadAllFilesData(res.continue);
             } else {
                 window.FennecBarAllFiles = allfilesData;
-                console.log(allfilesData.length)
+                //console.log(allfilesData.length)
                 setDataTableData();
             }
         }, apiContinue);
