@@ -33,6 +33,7 @@ class FennecToolbarHooks {
                 'ext.FilesList',
 				'ext.DragAndDropUpload',
                 'ext.QuickCreateAndEdit',
+                'ext.FennecToolbar.first',
                 'ext.FennecToolbar'
 			) );
 			if($wgFennecToolbarAddToolbar){

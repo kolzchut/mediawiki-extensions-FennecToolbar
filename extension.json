@@ -300,6 +300,12 @@
                 "modal-if-delete-page"
             ]
         },
+        "ext.FennecToolbar.first": {
+            "position": "top",
+            "styles": [
+                "modules/ext.fennec-toolbar.less"
+            ]
+        },
         "ext.FennecToolbar": {
             "dependencies": [
                 "ext.MaterialDialog",
