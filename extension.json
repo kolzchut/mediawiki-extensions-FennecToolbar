@@ -25,6 +25,9 @@
     "Hooks": {
         "BeforePageDisplay": [
             "FennecToolbarHooks::onBeforePageDisplay"
+        ],
+        "SkinTemplateOutputPageBeforeExec": [
+            "FennecToolbarHooks::onSkinTemplateOutputPageBeforeExec"
         ]
     },
     "MessagesDirs": {
