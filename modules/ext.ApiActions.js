@@ -220,18 +220,20 @@ fabApi = {};
      * We cant do it by API, so we will use iframe.
      */
     var reloadPurgeByIframe = function( callbackFunc ) {
-        var purgeUrl = location.origin + '?title=' + mw.config.get('wgPageName') + '&action=purge';
+        var purgeUrl = location.origin + mw.config.get('wgScriptPath') + '/index.php?title=' + mw.config.get('wgPageName') + '&action=purge';
             iFrame = $('<iframe>').css({height: '1px', width:'1px', position:'absolute', top : '-1000px'}).attr('src', purgeUrl);
-            iFrame.on('load', function(){
+        
+        iFrame.on('load', function(){
                 var bodyIframe = $(this.contentWindow.document.body);
                 iFrame.off('load').on('load', function(){
+                    //check if we got back to page
                     var success = !this.contentWindow.document.search;
                     callbackFunc( success );
                     iFrame.remove();
-                    //check if we got back to page
                                     
                 });
                 //trigger form
+                //console.log(bodyIframe.find('#mw-content-text .oo-ui-buttonElement-button'))
                 bodyIframe.find('#mw-content-text .oo-ui-buttonElement-button').trigger('click');
             });
             $('body').append(iFrame)
@@ -252,7 +254,7 @@ fabApi = {};
             assert: mw.user.isAnon() ? undefined : 'user'
         }, params)).done(function () {
             
-            reloadPurgeByIframe(pageTitle, function () {                    
+            reloadPurgeByIframe( function () {                    
                 window.location.reload(true);                
                 swal(
                     mw.msg("modal-delete-title"),

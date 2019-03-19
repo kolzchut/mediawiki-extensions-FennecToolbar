@@ -222,8 +222,10 @@
         $(document).on("click", "#f-purge", function (e) {
             $.simplyToast(mw.msg("fennec-toolbar-purge-start"), 'success'); 
             ApiReloadPurgeByIframe( function(success){
+                console.log(success, 'success')
                 if( success ){
                     $.simplyToast(mw.msg("fennec-toolbar-purge-success"), 'success'); 
+                    location.reload();
                 }
                 else{
                     $.simplyToast(mw.msg("fennec-toolbar-purge-error"), 'error'); 
