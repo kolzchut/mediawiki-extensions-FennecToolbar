@@ -58,9 +58,9 @@ class FennecToolbarHooks {
 		if( $wgFennecToolbarAddToolbar ){
 			$title = $skin->getTitle();
 			$edit_url = $template->data['content_navigation']['views']['edit']['href'];
-			$vedit_url = $template->data['content_navigation']['views']['ve-edit']['href'];
+			$vedit_url = isset( $template->data['content_navigation']['views']['ve-edit']['href'] ) ? $template->data['content_navigation']['views']['ve-edit']['href'] : '';
 			$history_url = $template->data['content_navigation']['views']['history']['href'];
-			$purge_url = $template->data['content_navigation']['actions']['purge']['href'];
+			$purge_url = isset( $template->data['content_navigation']['actions']['purge']['href'] ) ? $template->data['content_navigation']['actions']['purge']['href'] : '';
 			
 			$templateParser = new TemplateParser( __DIR__ . '/templates');
 			$advancedEdit = $vedit_url;
@@ -88,3 +88,4 @@ class FennecToolbarHooks {
 	}
 
 }
+
