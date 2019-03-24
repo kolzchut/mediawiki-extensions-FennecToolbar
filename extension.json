@@ -18,7 +18,13 @@
         "FennecToolbarAddFontawesome": false,
         "FennecToolbarAddBootstrap": false,
         "FennecToolbarFontType": "fal",
-        "FennecToolbarNamespacesAndTemplates": [],
+        "FennecToolbarNamespacesAndTemplates": [
+              {
+                "title" : "דף כללי",
+                "namespace" : "",
+                "form" : ""
+              }
+        ],
         "FennecToolbarExcludeCategories": [],
         "FennecToolbarPredefinedCategories": []
     },
