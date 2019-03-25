@@ -57,30 +57,33 @@ class FennecToolbarHooks {
         global $wgFennecToolbarFontType;
         $user = $skin->getUser();
 		if( $wgFennecToolbarAddToolbar && !$user->isAnon() ){
-			$title = $skin->getTitle();
-			$edit_url = $template->data['content_navigation']['views']['edit']['href'];
-			$vedit_url = $template->data['content_navigation']['views']['ve-edit']['href'];
-			$history_url = $template->data['content_navigation']['views']['history']['href'];
-			$purge_url = $template->data['content_navigation']['actions']['purge']['href'];
-			
-			$templateParser = new TemplateParser( __DIR__ . '/templates');
-			$advancedEdit = $vedit_url;
-			if(class_exists('PFFormLinker')){
-				$isEditableByForm = PFFormLinker::getDefaultFormsForPage($title);
-				if($isEditableByForm && count($isEditableByForm)){
-					$advancedEdit = self::replaceAction($edit_url, 'formedit');;
-				}
-			}
-
 			$mustach_params = [
 				'tooltip_side' => 'right',
 				'font_type' => $wgFennecToolbarFontType,
-				'advanced_edit' => $advancedEdit,
-				'edit_url' => $edit_url,
-				'purge_url' => $purge_url,
-				'history_url' => $history_url,
-				'vedit_url' => $vedit_url,
 			];
+			$title = $skin->getTitle();
+			if( isset( $template->data['content_navigation']['views']['edit']['href'] ) ){
+				$mustach_params[ 'edit_url' ] = $template->data['content_navigation']['views']['edit']['href'];
+			}
+			if( isset( $template->data['content_navigation']['views']['ve-edit']['href'] ) ){
+				$mustach_params[ 'vedit_url' ] = $template->data['content_navigation']['views']['edit']['href'];
+				$mustach_params[ 'advanced_edit' ] = $template->data['content_navigation']['views']['edit']['href'];
+			}
+			if( isset( $template->data['content_navigation']['views']['history']['href'] ) ){
+				$mustach_params[ 'history_url' ] = $template->data['content_navigation']['views']['history']['href'];
+			}
+			if( isset( $template->data['content_navigation']['views']['purge']['href'] ) ){
+				$mustach_params[ 'purge_url' ] = $template->data['content_navigation']['views']['purge']['href'];
+			}
+			
+			$templateParser = new TemplateParser( __DIR__ . '/templates');
+			
+			if(class_exists('PFFormLinker')){
+				$isEditableByForm = PFFormLinker::getDefaultFormsForPage($title);
+				if($isEditableByForm && count($isEditableByForm)){
+					$mustach_params[ 'advanced_edit' ] = self::replaceAction($mustach_params[ 'edit_url' ], 'formedit');;
+				}
+			}
 			
 			$template->data['bodytext'] .=  $templateParser->processTemplate('side-toolbar',$mustach_params);
 		}
