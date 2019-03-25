@@ -55,7 +55,8 @@ class FennecToolbarHooks {
 	public static function onSkinTemplateOutputPageBeforeExec( &$skin, &$template ) {
 		global $wgFennecToolbarAddToolbar;
         global $wgFennecToolbarFontType;
-		if( $wgFennecToolbarAddToolbar ){
+        $user = $skin->getUser();
+		if( $wgFennecToolbarAddToolbar && !$user->isAnon() ){
 			$title = $skin->getTitle();
 			$edit_url = $template->data['content_navigation']['views']['edit']['href'];
 			$vedit_url = $template->data['content_navigation']['views']['ve-edit']['href'];
