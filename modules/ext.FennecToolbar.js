@@ -205,8 +205,8 @@
                     var wgServer = mw.config.get( 'wgServer' ),
                         wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
                         pageName = (namespace ? namespace + ':' : '') + $name.val(),
-                        linkPath = formName ? ["Special:FormStart",formName,pageName].join('/') : pageName + '?action=edit';
-
+                        linkPath = formName ? ["Special:FormEdit",formName,pageName].join('/') : pageName +  '?veaction=edit'//( namespace ? '?action=edit' : '?veaction=edit');
+                    
                     var action_link = wgServer + wgPagePath + linkPath;
                     //console.log('action', action_link);
                     // $form.attr('action', action_link)
