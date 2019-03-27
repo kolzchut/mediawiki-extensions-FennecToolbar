@@ -10,6 +10,7 @@
                                           height, 
                                           windowManager, 
                                           dialogSize ) {
+
 		function MaterialDialog( config ) {
 			MaterialDialog.parent.call( this, config );
 			this.broken = true;
@@ -102,6 +103,7 @@
 			var materialDialog =
 				createMaterialDialog( title, actions, content, mainActionFunc, height, windowManager );
 
+			materialDialog.windowManager = windowManager;
 			windowManager.addWindows( [ materialDialog ] );
 			// Open the window!
 			windowManager.openWindow( materialDialog );

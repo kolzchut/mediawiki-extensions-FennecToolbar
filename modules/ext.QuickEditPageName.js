@@ -404,6 +404,7 @@
         ] );
         //console.log(mw.config.get('wgCanonicalNamespace'))ף
         var mainFunction = function (dialog, action, windowManager) {
+           
             var pageTitle = titleInput.getValue();
             pageTitle = ApiFixTitle(pageTitle);
             //console.log(titleInput);
@@ -495,6 +496,14 @@
 
         // Create edit or create material dialog
         var materialDialog = MaterialDialog( dialogTitle, dialogActionButtons, fieldset, mainFunction, dialogHeight);
+        //bind enter click
+        materialDialog.$content.find('.oo-ui-inputWidget-input').on('keydown' ,function (e) {
+            if ( 13 === e.keyCode ) {
+                mainFunction( materialDialog, "edit", materialDialog.windowManager);
+                
+                return false;
+            }
+        });
 
         // Loading the categories selector input with all the categories and with the already selected.
         loadCategoriesSelectorInput(editTitle.selectedCategories);
