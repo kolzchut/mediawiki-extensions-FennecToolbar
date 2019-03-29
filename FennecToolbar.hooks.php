@@ -9,7 +9,7 @@
 class FennecToolbarHooks {
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin) {
 		
-        global $wgFennecToolbarNamespacesAndTemplates;
+        $fennecToolbarNamespacesAndTemplates = FennecToolbarHooks::getFennecToolbarNamespacesAndTemplates();
         global $wgFennecToolbarPredefinedCategories;
         global $wgFennecToolbarExcludeCategories;
         global $wgFennecToolbarAddToolbar;
@@ -17,12 +17,13 @@ class FennecToolbarHooks {
         global $wgFennecToolbarAddFontawesome;
         global $wgFennecToolbarFontType;
 		
+
 		$user = $skin->getUser();
 		
 		// Check if the user is connect
 		if ( !$user->isAnon() ) {
 			$configs = array(
-                'wgFennecToolbarNamespacesAndTemplates' => $wgFennecToolbarNamespacesAndTemplates,
+                'wgFennecToolbarNamespacesAndTemplates' => $fennecToolbarNamespacesAndTemplates,
                 'wgFennecToolbarExcludeCategories' => $wgFennecToolbarExcludeCategories,
                 'wgFennecToolbarPredefinedCategories' => $wgFennecToolbarPredefinedCategories,
 			);
@@ -81,7 +82,7 @@ class FennecToolbarHooks {
 			if(class_exists('PFFormLinker')){
 				$isEditableByForm = PFFormLinker::getDefaultFormsForPage($title);
 				if($isEditableByForm && count($isEditableByForm)){
-					$mustach_params[ 'advanced_edit' ] = self::replaceAction($mustach_params[ 'edit_url' ], 'formedit');;
+					$mustach_params[ 'advanced_edit' ] = self::replaceAction($mustach_params[ 'edit_url' ], 'formedit');
 				}
 			}
 			
@@ -90,5 +91,12 @@ class FennecToolbarHooks {
 		
 		//die(print_r(((array)),1));
 	}
-
+	public static function getFennecToolbarNamespacesAndTemplates(){
+		global $wgFennecToolbarNamespacesAndTemplates;
+		return count( $wgFennecToolbarNamespacesAndTemplates ) ? $wgFennecToolbarNamespacesAndTemplates : [[
+			"title" => (string) wfMessage('fennec-toolbar-default-page-title'),
+    	    "namespace" => "",
+	        "form" => ""
+		]];
+	}
 }
