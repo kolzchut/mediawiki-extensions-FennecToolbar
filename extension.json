@@ -18,13 +18,7 @@
         "FennecToolbarAddFontawesome": false,
         "FennecToolbarAddBootstrap": false,
         "FennecToolbarFontType": "fal",
-        "FennecToolbarNamespacesAndTemplates": [
-              {
-                "title" : "דף ריק",
-                "namespace" : "",
-                "form" : ""
-              }
-        ],
+        "FennecToolbarNamespacesAndTemplates": [],
         "FennecToolbarExcludeCategories": [],
         "FennecToolbarPredefinedCategories": []
     },

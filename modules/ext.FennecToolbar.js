@@ -128,14 +128,14 @@
                         size:"30",
                         id:"formInput_Item",
                         placeholder:mw.msg('spni-insert-item-name'),
-                        class : "formInput input-item-name zero-padding float-right col-sm-12 col-md-7",
+                        class : "formInput input-item-name float-right col-sm-12 col-md-7",
                         name:"page_name",
                         type:"text"
                     }),
                     $type = $('<select>').attr({
                         id:"newItemForm",
                         name:"newItemForm",
-                        class : "form-control col-md-4 col-sm-12 zero-padding",
+                        class : "form-control col-md-4 col-sm-12",
                     }),
                     $form_input = $('<input>').attr({
                         id:"form_id",
@@ -153,7 +153,7 @@
                     .append($form_input)
                     .append($namespace)
                     .append("<span id='error_item' class='pull-left'> </span>");
-                $type.append('<option disabled selected value> -- ' + mw.msg("modal-choose-item-type") + ' -- </option>')   
+                //$type.append('<option disabled selected value> -- ' + mw.msg("modal-choose-item-type") + ' -- </option>')   
                 var allNamespacesAndTemplates = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
                 for (i=0 ; i< allNamespacesAndTemplates.length; i++){
                     var item = allNamespacesAndTemplates[i];
@@ -193,16 +193,8 @@
                         $("#formInput_Item").css({"border" : "1px solid red"});
                         return false;
                     }
-                    var formName, namespace = $namespace.val();
-                    if(namespace){
-                        let formsPerNamespaces = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
-                        for(var i = 0; i < formsPerNamespaces.length; i++){
-                            if( namespace == formsPerNamespaces[i].namespace){
-                                formName = formsPerNamespaces[i].form;
-                            }
-                        }
-                    }
-                    var wgServer = mw.config.get( 'wgServer' ),
+                    var formName = $form_input.val(), namespace = $namespace.val(),
+                    	wgServer = mw.config.get( 'wgServer' ),
                         wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
                         pageName = (namespace ? namespace + ':' : '') + $name.val(),
                         linkPath = formName ? ["Special:FormEdit",formName,pageName].join('/') : pageName +  '?veaction=edit'//( namespace ? '?action=edit' : '?veaction=edit');
