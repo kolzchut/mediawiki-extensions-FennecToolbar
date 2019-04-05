@@ -194,7 +194,8 @@
                         return false;
                     }
                     var formName = $form_input.val(), namespace = $namespace.val(),
-                    	wgServer = mw.config.get( 'wgServer' ),
+                    	//mw.config.get( 'wgServer' ) could be localhost:8000 for example
+                        wgServer = location.hostname;//mw.config.get( 'wgServer' ),
                         wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
                         pageName = (namespace ? namespace + ':' : '') + $name.val(),
                         linkPath = formName ? ["Special:FormEdit",formName,pageName].join('/') : pageName +  '?veaction=edit'//( namespace ? '?action=edit' : '?veaction=edit');
