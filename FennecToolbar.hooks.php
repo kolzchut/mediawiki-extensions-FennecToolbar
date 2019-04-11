@@ -76,7 +76,9 @@ class FennecToolbarHooks {
 			if( isset( $template->data['content_navigation']['views']['purge']['href'] ) ){
 				$mustach_params[ 'purge_url' ] = $template->data['content_navigation']['views']['purge']['href'];
 			}
-			
+			$specailPage = Title::newFromText('special:SpecialPages');
+			//die(print_r(,1));
+			$mustach_params['settings_url'] = $specailPage->getLocalURL();
 			$templateParser = new TemplateParser( __DIR__ . '/templates');
 			
 			if(class_exists('PFFormLinker')){
