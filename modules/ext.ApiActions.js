@@ -206,8 +206,8 @@ fabApi = {};
     /**
      * API reload pages use purges.
      */
-    var reloadPurge = function( formatedTitles, callbackFunc ) {
-        api.get({
+    var reloadPurge = function( formatedTitles, callbackFunc, failFunc ) {
+        api.post({
             formatversion: 2,
             action: 'purge',
             titles: formatedTitles,            
@@ -254,7 +254,7 @@ fabApi = {};
             assert: mw.user.isAnon() ? undefined : 'user'
         }, params)).done(function () {
             
-            reloadPurgeByIframe( function () {                    
+            reloadPurge(pageTitle, function () {                    
                 window.location.reload(true);                
                 swal(
                     mw.msg("modal-delete-title"),
