@@ -195,11 +195,14 @@
                     }
                     var formName = $form_input.val(), namespace = $namespace.val(),
                     	//mw.config.get( 'wgServer' ) could be localhost:8000 for example
-                        wgServer = location.hostname;//mw.config.get( 'wgServer' ),
+                        wgServer = location.hostname,//mw.config.get( 'wgServer' ),
                         wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
                         pageName = (namespace ? namespace + ':' : '') + $name.val(),
                         linkPath = formName ? ["Special:FormEdit",formName,pageName].join('/') : pageName +  '?veaction=edit'//( namespace ? '?action=edit' : '?veaction=edit');
-                    
+                    if( !/http/.test(wgServer) ){
+                        wgServer = location.protocol + '//' + wgServer;
+                    }
+
                     var action_link = wgServer + wgPagePath + linkPath;
                     //console.log('action', action_link);
                     // $form.attr('action', action_link)
