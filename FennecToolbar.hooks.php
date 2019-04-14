@@ -67,8 +67,8 @@ class FennecToolbarHooks {
 				$mustach_params[ 'edit_url' ] = $template->data['content_navigation']['views']['edit']['href'];
 			}
 			if( isset( $template->data['content_navigation']['views']['ve-edit']['href'] ) ){
-				$mustach_params[ 'vedit_url' ] = $template->data['content_navigation']['views']['edit']['href'];
-				$mustach_params[ 'advanced_edit' ] = $template->data['content_navigation']['views']['edit']['href'];
+				$mustach_params[ 'vedit_url' ] = $template->data['content_navigation']['views']['ve-edit']['href'];
+				$mustach_params[ 'advanced_edit' ] = $template->data['content_navigation']['views']['ve-edit']['href'];
 			}
 			if( isset( $template->data['content_navigation']['views']['history']['href'] ) ){
 				$mustach_params[ 'history_url' ] = $template->data['content_navigation']['views']['history']['href'];
