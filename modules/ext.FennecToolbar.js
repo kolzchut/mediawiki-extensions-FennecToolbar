@@ -200,7 +200,7 @@
                         pageName = (namespace ? namespace + ':' : '') + $name.val(),
                         linkPath = formName ? ["Special:FormEdit",formName,pageName].join('/') : pageName +  '?veaction=edit'//( namespace ? '?action=edit' : '?veaction=edit');
                     if( !/http/.test(wgServer) ){
-                        wgServer = location.protocol + '//' + wgServer;
+                        wgServer = location.protocol + '//' + wgServer + (location.port  ? ':' + location.port : '');
                     }
 
                     var action_link = wgServer + wgPagePath + linkPath;
