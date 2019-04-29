@@ -2,16 +2,66 @@
  * JavaScript for FennecToolbar Menu
  */
 (function (mw, $) {
-   console.log('loaded!');
-    if(!window.fennecInited){
-        console.log('loaded first!');
+   
+    mw.fennecToolbar = {
+        getCreateUrlByFormTitle : function(titleOfPageType, titleOfCreatedPage, callback){
+            var entry = null,
+                toolbarHook = new mw.hook( 'FennecToolbar' ),
+                allEntries = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
+            for(var i = 0; i < allEntries.length; i++){
+                var loopEntry = allEntries[ i ];
+                if( loopEntry.title === titleOfPageType){
+                    entry = loopEntry;
+                }
+            }
+            if(!entry){
+                console.log("ent", entry)
+                return callback ( null );
+            }
+            var allData = {};
+
+            allData.formName = entry.form;
+            allData.namespace = entry.namespace;
+            allData.wgServer = location.hostname;
+            if( !/http/.test(allData.wgServer) ){
+                allData.wgServer = location.protocol + '//' + allData.wgServer + (location.port  ? ':' + location.port : '');
+              }
+                 //mw.config.get( 'wgServer' ) could be localhost:8000 for example
+                 //mw.config.get( 'wgServer' ),
+                 allData.wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
+                 allData.pageName = (allData.namespace ? allData.namespace + ':' : '') + titleOfCreatedPage;
+              
+            if(allData.formName){
+                allData.linkPath = ["Special:FormEdit",allData.formName,allData.pageName].join('/')
+            }
+            else{
+                allData.linkPath =allData.pageName;
+                allData.query = ['veaction=edit'];
+            }
+            allData.fullUrl = mw.fennecToolbar.getFullUrl(allData);//wgServer + wgPagePath + linkPath;
+            toolbarHook.fire( allData );
+            setTimeout(function(){
+                console.log("setTimeout", entry)
+                callback( allData );
+            },200);
+        },
+        getFullUrl: function(allData){
+            var url = allData.wgServer + allData.wgPagePath + allData.linkPath;
+            if(allData.query && allData.query.length){
+                url += '?' + allData.query.join('&')
+            }
+            return url;
+        }
+    };
+
+   if(!window.fennecInited){
         window.fennecInited = true;
-    }
-    else{
-        console.log('loaded twice!');
-        return;
-    }
-    var getKey = function (array, value) {
+   }
+   else{
+       console.log('loaded twice!');
+       return;
+   }
+   var getKey = function (array, value) {
         for (var key in array) {
             val = array[key];
             if (key == value) {
@@ -184,29 +234,12 @@
                 });
                 
                 $form.submit(function( event ) {
-                    //console.log(event);
-                    //event.preventDefault();
-                    $("#newItemForm").css({"border" : "1px solid #ccc"});
-
-                    if ( $( "#formInput_Item" ).val() === "" ) {
-                        $( "#error_item" ).text(mw.msg("modal-please-fill-all-fields")).show();
-                        $("#formInput_Item").css({"border" : "1px solid red"});
-                        return false;
-                    }
-                    var formName = $form_input.val(), namespace = $namespace.val(),
-                    	//mw.config.get( 'wgServer' ) could be localhost:8000 for example
-                        wgServer = location.hostname,//mw.config.get( 'wgServer' ),
-                        wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
-                        pageName = (namespace ? namespace + ':' : '') + $name.val(),
-                        linkPath = formName ? ["Special:FormEdit",formName,pageName].join('/') : pageName +  '?veaction=edit'//( namespace ? '?action=edit' : '?veaction=edit');
-                    if( !/http/.test(wgServer) ){
-                        wgServer = location.protocol + '//' + wgServer + (location.port  ? ':' + location.port : '');
-                    }
-
-                    var action_link = wgServer + wgPagePath + linkPath;
-                    //console.log('action', action_link);
-                    // $form.attr('action', action_link)
-                    location.href = action_link;
+                    var select = $( "#newItemForm" ),
+                        option = select.find('option[value="' + select.val() + '"]').get(0),
+                        textChosen = option ? option.innerText : ''; 
+                    mw.fennecToolbar.getCreateUrlByFormTitle(textChosen, $name.val(), function( allData ){
+                        location.href = allData.fullUrl;
+                    });
                     return false;
                 });
             }
