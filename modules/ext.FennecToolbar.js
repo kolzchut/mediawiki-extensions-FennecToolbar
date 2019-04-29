@@ -28,9 +28,18 @@
               }
                  //mw.config.get( 'wgServer' ) could be localhost:8000 for example
                  //mw.config.get( 'wgServer' ),
-                 allData.wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
-                 allData.pageName = (allData.namespace ? allData.namespace + ':' : '') + titleOfCreatedPage;
-              
+            allData.wgPagePath = mw.config.get( 'wgArticlePath' ).replace('$1', ''),
+            allData.pageName = (allData.namespace ? allData.namespace + ':' : '') + titleOfCreatedPage;
+            mw.fennecToolbar.calcPath( allData );  
+            
+            allData.fullUrl = mw.fennecToolbar.getFullUrl(allData);//wgServer + wgPagePath + linkPath;
+            toolbarHook.fire( allData );
+            setTimeout(function(){
+                console.log("setTimeout", allData)
+                callback( allData );
+            },1200);
+        },
+        calcPath: function(allData){
             if(allData.formName){
                 allData.linkPath = ["Special:FormEdit",allData.formName,allData.pageName].join('/')
             }
@@ -38,12 +47,6 @@
                 allData.linkPath =allData.pageName;
                 allData.query = ['veaction=edit'];
             }
-            allData.fullUrl = mw.fennecToolbar.getFullUrl(allData);//wgServer + wgPagePath + linkPath;
-            toolbarHook.fire( allData );
-            setTimeout(function(){
-                console.log("setTimeout", entry)
-                callback( allData );
-            },200);
         },
         getFullUrl: function(allData){
             var url = allData.wgServer + allData.wgPagePath + allData.linkPath;
