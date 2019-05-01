@@ -6,7 +6,6 @@
     mw.fennecToolbar = {
         getCreateUrlByFormTitle : function(titleOfPageType, titleOfCreatedPage, callback){
             var entry = null,
-                toolbarHook = new mw.hook( 'FennecToolbar' ),
                 allEntries = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
             for(var i = 0; i < allEntries.length; i++){
                 var loopEntry = allEntries[ i ];
@@ -15,13 +14,19 @@
                 }
             }
             if(!entry){
-                console.log("ent", entry)
-                return callback ( null );
+                callback ( null );
             }
-            var allData = {};
+            else{
+                mw.fennecToolbar.getCreateUrl(titleOfCreatedPage, entry.form, entry.namespace, callback);
+            }
+        },
+        getCreateUrl : function(titleOfCreatedPage, form, namespace, callback){
+            
+            var allData = {},
+                toolbarHook = new mw.hook( 'FennecToolbar' );
 
-            allData.formName = entry.form;
-            allData.namespace = entry.namespace;
+            allData.formName = form;
+            allData.namespace = namespace;
             allData.wgServer = location.hostname;
             if( !/http/.test(allData.wgServer) ){
                 allData.wgServer = location.protocol + '//' + allData.wgServer + (location.port  ? ':' + location.port : '');
@@ -35,9 +40,8 @@
             allData.fullUrl = mw.fennecToolbar.getFullUrl(allData);//wgServer + wgPagePath + linkPath;
             toolbarHook.fire( allData );
             setTimeout(function(){
-                console.log("setTimeout", allData)
                 callback( allData );
-            },1200);
+            },200);
         },
         calcPath: function(allData){
             if(allData.formName){
@@ -240,7 +244,8 @@
                     var select = $( "#newItemForm" ),
                         option = select.find('option[value="' + select.val() + '"]').get(0),
                         textChosen = option ? option.innerText : ''; 
-                    mw.fennecToolbar.getCreateUrlByFormTitle(textChosen, $name.val(), function( allData ){
+                    mw.fennecToolbar.getCreateUrlByFormTitle(textChosen,$name.val(), function( allData ){
+                        //console.log(allData,"allData");
                         location.href = allData.fullUrl;
                     });
                     return false;
