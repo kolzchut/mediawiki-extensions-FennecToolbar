@@ -39,9 +39,10 @@
             
             allData.fullUrl = mw.fennecToolbar.getFullUrl(allData);//wgServer + wgPagePath + linkPath;
             toolbarHook.fire( allData );
-            setTimeout(function(){
-                callback( allData );
-            },200);
+            return allData;
+            // setTimeout(function(){
+            //     callback( allData );
+            // },200);
         },
         calcPath: function(allData){
             if(allData.formName){
@@ -49,13 +50,13 @@
             }
             else{
                 allData.linkPath =allData.pageName;
-                allData.query = ['veaction=edit'];
+                allData.query = {'veaction':'edit'};
             }
         },
         getFullUrl: function(allData){
             var url = allData.wgServer + allData.wgPagePath + allData.linkPath;
-            if(allData.query && allData.query.length){
-                url += '?' + allData.query.join('&')
+            if(allData.query && Object.keys(allData.query).length){
+                url += '?' + $.param(allData.query);
             }
             return url;
         }
@@ -243,11 +244,9 @@
                 $form.submit(function( event ) {
                     var select = $( "#newItemForm" ),
                         option = select.find('option[value="' + select.val() + '"]').get(0),
-                        textChosen = option ? option.innerText : ''; 
-                    mw.fennecToolbar.getCreateUrlByFormTitle(textChosen,$name.val(), function( allData ){
-                        //console.log(allData,"allData");
-                        location.href = allData.fullUrl;
-                    });
+                        textChosen = option ? option.innerText : '',
+                    allData = mw.fennecToolbar.getCreateUrlByFormTitle(textChosen,$name.val());
+                    location.href = allData.fullUrl;
                     return false;
                 });
             }
