@@ -4,7 +4,7 @@
 (function (mw, $) {
    
     mw.fennecToolbar = {
-        getCreateUrlByFormTitle : function(titleOfPageType, titleOfCreatedPage, callback){
+        getCreateUrlByFormTitle : function(titleOfPageType, titleOfCreatedPage){
             var entry = null,
                 allEntries = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
             for(var i = 0; i < allEntries.length; i++){
@@ -14,13 +14,13 @@
                 }
             }
             if(!entry){
-                callback ( null );
+                return null;
             }
             else{
-                mw.fennecToolbar.getCreateUrl(titleOfCreatedPage, entry.form, entry.namespace, callback);
+                return mw.fennecToolbar.getCreateUrl(titleOfCreatedPage, entry.form, entry.namespace);
             }
         },
-        getCreateUrl : function(titleOfCreatedPage, form, namespace, callback){
+        getCreateUrl : function(titleOfCreatedPage, form, namespace){
             
             var allData = {},
                 toolbarHook = new mw.hook( 'FennecToolbar' );
