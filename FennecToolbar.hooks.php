@@ -77,7 +77,7 @@ class FennecToolbarHooks {
 				$mustach_params[ 'purge_url' ] = $template->data['content_navigation']['views']['purge']['href'];
 			}
 			$specailPage = Title::newFromText('special:SpecialPages');
-			//die(print_r(,1));
+			//die(print_r([$template->data['content_navigation']],1));
 			$mustach_params['settings_url'] = $specailPage->getLocalURL();
 			$templateParser = new TemplateParser( __DIR__ . '/templates');
 			
