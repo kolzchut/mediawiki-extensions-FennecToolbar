@@ -55,6 +55,7 @@
                 "fennec-toolbar-purge-error",
                 "fennec-toolbar-purge-success",
                 "fennec-toolbar-purge-start",
+                "fennec-toolbar-copy-filename",
                 "modal-delete-message"
             ]
         },
