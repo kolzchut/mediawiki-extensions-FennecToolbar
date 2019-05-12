@@ -90,7 +90,7 @@
             tableData.push( [
                 isFileChecked,
                 '<a target="_blank" href="' + imageUrl + '" title="' + linkTitle + '" ><img src="' + imageUrl + '" alt="' + fileName + '" class="imgList"></a>',
-                '<a target="_blank" href="/' + fileTitle + '" title="' + fileLinkTitle + '" id="' + pageId + '">' + fileName + '</a> <button type="button" class="copy-btn btn-default btn-xs" data-type="attribute" data-attr-name="data-clipboard-text" data-model="couponCode" data-clipboard-text="' + fileName + '" title="העתקת שם הקובץ"><i class="fa fa-clipboard"></i></button>',
+                '<a target="_blank" href="/' + fileTitle + '" title="' + fileLinkTitle + '" id="' + pageId + '">' + fileName + '</a> <button type="button" class="copy-btn btn-default btn-xs" data-type="attribute" data-attr-name="data-clipboard-text" data-model="couponCode" data-clipboard-text="' + fileName + '" title="' + mw.message('fennec-toolbar-copy-filename')+ '"><i class="fa fa-clipboard"></i></button>',
                 fileComment,
                 fileUsageLinks,
                 '<a target="_blank" href="/user:' + userUpload + '" title="' + userUpload + '">' + userUpload + '</a>',

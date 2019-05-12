@@ -95,6 +95,7 @@
     "fennec-toolbar-item-delete": "Delete item",
     "fennec-toolbar-item-cache": "Clear cache",
     "fennec-toolbar-item-history": "Item's revisions",
-    "fennec-toolbar-item-configuration": "Configurations"
+    "fennec-toolbar-item-configuration": "Configurations",
+    "fennec-toolbar-copy-filename": "Copy file name"
     
 }
