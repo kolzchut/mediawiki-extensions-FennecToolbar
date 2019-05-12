@@ -85,6 +85,17 @@
     "fennec-toolbar-purge-error": "רענון הדף נכשל",
     "fennec-toolbar-purge-success": "רענון הדף הצליח",
     "fennec-toolbar-purge-start": "רענון הדף מתחיל. אנא המתן",
-    "choose-files": "בחר קבצים"
+    "choose-files": "בחר קבצים",
+    "fennec-toolbar-item-create": "יצירת פריט",
+    "fennec-toolbar-item-files": "ניהול קבצים",
+    "fennec-toolbar-item-edit": "עריכת הפריט",
+    "fennec-toolbar-item-code-edit": "עריכת קוד",
+    "fennec-toolbar-item-rename": "שינוי שם הפריט",
+    "fennec-toolbar-item-alef": "א",
+    "fennec-toolbar-item-categories": "ניהול קטגוריות הפריט ",
+    "fennec-toolbar-item-delete": "מחיקת הפריט",
+    "fennec-toolbar-item-cache": "ניקוי מטמון",
+    "fennec-toolbar-item-history": "ניהול גירסאות",
+    "fennec-toolbar-item-configuration": "הגדרות"
     
 }

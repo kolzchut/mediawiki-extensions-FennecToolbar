@@ -84,6 +84,17 @@
     "fennec-toolbar-purge-error": "Page refresh failed",
     "fennec-toolbar-purge-success": "Page refresh succseed",
     "fennec-toolbar-purge-start": "Page refresh fired. Please wait",
-    "choose-files": "Choose Files"
+    "choose-files": "Choose Files",
+    "fennec-toolbar-item-create": "Create item",
+    "fennec-toolbar-item-files": "Manage files",
+    "fennec-toolbar-item-edit": "Edit item",
+    "fennec-toolbar-item-code-edit": "Code edit",
+    "fennec-toolbar-item-rename": "Rename item",
+    "fennec-toolbar-item-alef": "A",
+    "fennec-toolbar-item-categories": "Manage item's categories",
+    "fennec-toolbar-item-delete": "Delete item",
+    "fennec-toolbar-item-cache": "Clear cache",
+    "fennec-toolbar-item-history": "Item's revisions",
+    "fennec-toolbar-item-configuration": "Configurations"
     
 }

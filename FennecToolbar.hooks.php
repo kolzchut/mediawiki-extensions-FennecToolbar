@@ -76,8 +76,26 @@ class FennecToolbarHooks {
 			if( isset( $template->data['content_navigation']['views']['purge']['href'] ) ){
 				$mustach_params[ 'purge_url' ] = $template->data['content_navigation']['views']['purge']['href'];
 			}
+			$allTranslations = [
+				"fennec-toolbar-item-create",
+				"fennec-toolbar-item-files",
+				"fennec-toolbar-item-edit",
+				"fennec-toolbar-item-code-edit",
+				"fennec-toolbar-item-rename",
+				"fennec-toolbar-item-alef",
+				"fennec-toolbar-item-categories",
+				"fennec-toolbar-item-delete",
+				"fennec-toolbar-item-cache",
+				"fennec-toolbar-item-history",
+				"fennec-toolbar-item-configuration",
+			];
+			foreach ($allTranslations as $translation ) {
+				$key = preg_replace("/\-/", '_',preg_replace( '/fennec-toolbar-/', '', $translation)) . '_label';
+				//echo "key: $key<br/>";
+				$mustach_params[ $key ] = wfMessage($translation)->text();
+			}
 			$specailPage = Title::newFromText('special:SpecialPages');
-			//die(print_r([$template->data['content_navigation']],1));
+			//die(print_r($mustach_params,1));
 			$mustach_params['settings_url'] = $specailPage->getLocalURL();
 			$templateParser = new TemplateParser( __DIR__ . '/templates');
 			
