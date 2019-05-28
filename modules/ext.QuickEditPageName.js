@@ -531,7 +531,7 @@
 
                 // Wiki Text Without Categories.
                 //var wikiText = removeCategoriesFromWikiText(templateWikiText, templateCategories);
-                //var content = wikiText.concat(selectedCategoriesText);
+                var content;// = wikiText.concat(selectedCategoriesText);
                 var oldTitle = templateTitle.trim().replace(/_/g, ' ');
 
                 //console.log(wikiText, content, oldTitle, pageTitle);
