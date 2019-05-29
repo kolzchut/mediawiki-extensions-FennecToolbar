@@ -211,6 +211,7 @@
         // Create Namespaces Options
         var namespacesOptions = new Array();
         var selectedItem = "";
+        var leaveCopy ;
 
         // In Edit Mode
         if (editTitle.isEdit) {
@@ -243,6 +244,11 @@
                 };
                 dialogActionButtons.push(deletePageButton);
             }
+            leaveCopy = new OO.ui.CheckboxInputWidget({
+                value: '1',
+                selected:true
+            });
+           
         }
 
         // In Create Mode
@@ -402,6 +408,16 @@
             //     align: 'top'
             // })
         ] );
+        if( leaveCopy ){
+             fieldset.addItems( [
+                    new OO.ui.FieldLayout(leaveCopy, {
+                        id: "modal-leave-copy-fieldset",
+                        label: mw.msg("modal-leave-copy-label"),
+                        classes: ['leave-copy'],
+                        align: 'inline'
+                    } )
+                ] );
+        }
         //console.log(mw.config.get('wgCanonicalNamespace'))ף
         var mainFunction = function (dialog, action, windowManager) {
            
@@ -432,9 +448,10 @@
                         } );
                     },
                     "edit": function() {
-                        var oldTitle = editTitle.pageName.trim();
-                        console.log(formatedTitle);
-                        prepareWikiTextBeforeEditOrCreate(oldTitle, formatedTitle, selectedCategoriesText, false);
+                        var oldTitle = editTitle.pageName.trim(),
+                            dontLeaveCopy = ( $('.leave-copy :input').length && !$('.leave-copy :input').is(':checked') );
+                        //console.log(formatedTitle);
+                        prepareWikiTextBeforeEditOrCreate(oldTitle, formatedTitle, selectedCategoriesText, false,  dontLeaveCopy);
                         dialog.close();
                         windowManager.destroy();
                     },
@@ -514,7 +531,7 @@
     /**
     * Prepare wiki text before edit or create page
     */
-    var prepareWikiTextBeforeEditOrCreate = function (templateTitle, pageTitle, selectedCategoriesText, isNewPage = true) {
+    var prepareWikiTextBeforeEditOrCreate = function (templateTitle, pageTitle, selectedCategoriesText, isNewPage = true, dontLeaveCopy) {
 
         // Check if the template title is not empty.
         if (templateTitle) {
@@ -539,11 +556,17 @@
                 if ( pageTitle !== oldTitle) {
                     ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
                     // in edit mode and page title is not equeal to old title.
-                    ApiRenamePage(pageTitle, oldTitle, function () {
+                    ApiRenamePage(pageTitle, oldTitle, dontLeaveCopy, function (data) {
+                        //console.log("fffdata", data, dontLeaveCopy,pageTitle, oldTitle);
                         $.simplyToast(mw.msg("edited-successfully"), 'success'); 
-
                         setTimeout(function(){
-                            window.location.href = "/" + pageTitle;
+                            //if(dontLeaveCopy){
+                            var gotoTitle = new mw.Title( pageTitle );
+                            window.location.href = gotoTitle.getUrl()
+                            // }
+                            // else{
+                            //     window.location.href = "/" + pageTitle;
+                            // }
                             window.location.reload(true);
                         }, 1500);
                         //ApiEditOrCreateNewPage(pageTitle, content, isNewPage);

@@ -500,7 +500,7 @@
     /**
     * Prepare wiki text before edit or create page
     */
-    var prepareWikiTextBeforeEditOrCreate = function (templateTitle, pageTitle, selectedCategoriesText, isNewPage = true) {
+    var prepareWikiTextBeforeEditOrCreate = function (templateTitle, pageTitle, selectedCategoriesText, isNewPage = true, dontLeaveCopy) {
         
         // Check if the template title is not empty.
         if (templateTitle) { 
@@ -523,10 +523,10 @@
                 //console.log(wikiText, content, oldTitle, pageTitle);
 
                 if (isNewPage || pageTitle === oldTitle) {
-                    ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
+                    ApiEditOrCreateNewPage(pageTitle, content, isNewPage, dontLeaveCopy);
                 } else{
                     // in edit mode and page title is not equeal to old title.
-                    ApiRenamePage(pageTitle, oldTitle, function () {                    
+                    ApiRenamePage(pageTitle, oldTitle, dontLeaveCopy, function () {                    
                         ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
                     });
                 } 

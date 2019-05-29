@@ -96,6 +96,7 @@
     "fennec-toolbar-item-cache": "Clear cache",
     "fennec-toolbar-item-history": "Item's revisions",
     "fennec-toolbar-item-configuration": "Configurations",
+    "modal-leave-copy-label": "Leave copy",
     "fennec-toolbar-copy-filename": "Copy file name"
     
 }

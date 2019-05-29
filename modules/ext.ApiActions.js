@@ -141,12 +141,18 @@ fabApi = {};
     /**
      * API Move / Rename page.
      */
-    var renamePage = function(pageTitle, oldTitle, callbackFunc) {
+    var renamePage = function(pageTitle, oldTitle, dontLeaveCopy, callbackFunc) {
+        // console.error("dsdsd", dontLeaveCopy);
+        // return;
+        if(dontLeaveCopy && 'function' == typeof dontLeaveCopy){
+            callbackFunc = dontLeaveCopy;
+            dontLeaveCopy= false;
+        }
         api.postWithEditToken($.extend({
             action: 'move',
             from: oldTitle,
             to: pageTitle,
-            noredirect: false,
+            noredirect: dontLeaveCopy,
             formatversion: '2',
             // Protect against errors and conflicts
             assert: mw.user.isAnon() ? undefined : 'user'
