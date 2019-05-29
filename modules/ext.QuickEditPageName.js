@@ -562,12 +562,12 @@
                         setTimeout(function(){
                             //if(dontLeaveCopy){
                             var gotoTitle = new mw.Title( pageTitle );
-                            window.location.href = gotoTitle.getUrl()
+                            window.location = gotoTitle.getUrl()
                             // }
                             // else{
                             //     window.location.href = "/" + pageTitle;
                             // }
-                            window.location.reload(true);
+                            //window.location.reload(true);
                         }, 1500);
                         //ApiEditOrCreateNewPage(pageTitle, content, isNewPage);
                     });
