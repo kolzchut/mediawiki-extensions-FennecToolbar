@@ -424,7 +424,7 @@
             var pageTitle = titleInput.getValue();
             pageTitle = ApiFixTitle(pageTitle);
             //console.log(titleInput);
-            if (pageTitle) {
+            if (pageTitle && !$("#model-main-button").is('.oo-ui-widget-disabled')) {
                 var formatedTitle =  pageTitle;
                 
                 var selectedCategoriesText = getSelectedCategoriesInWikiText();

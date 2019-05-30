@@ -51,6 +51,7 @@
             mainButton.toggleClass('oo-ui-widget-disabled', false);
             mainButton.toggleClass('oo-ui-widget-enabled', true);
             mainButton.attr('aria-disabled', false);
+            mainButton.removeAttr('disabled');
         } else {
             
             // showing notify message only after submiting all the data.
@@ -61,6 +62,7 @@
             mainButton.toggleClass('oo-ui-widget-disabled', true);
             mainButton.toggleClass('oo-ui-widget-enabled', false);
             mainButton.attr('aria-disabled', "true");
+            mainButton.attr('disabled', "disabled");
         }
     };
     
@@ -404,7 +406,7 @@
         var mainFunction = function (dialog, action, windowManager) {            
             var pageTitle = titleInput.getTitle();            
 
-            if (pageTitle) {                
+            if (pageTitle && !$("#model-main-button").is('.oo-ui-widget-disabled')) {                
                 var formatedTitle = pageTitle.toText();                
                 var selectedCategoriesText = getSelectedCategoriesInWikiText();
                 
