@@ -6,9 +6,10 @@
     /**
     * global variables
     */
-    var categoriesSelector;
-    var isTemplateTitleVaild = true;
-    var isNewPageTitleVaild = true;
+    var categoriesSelector,
+        isTemplateTitleVaild = true,
+        isNewPageTitleVaild = true
+        titleOverriding = false;
 
     var wgFennecToolbarNamespacesAndTemplates = mw.config.get('wgFennecToolbarNamespacesAndTemplates');
     // check is Combined Namespaces And Templates are configured.
@@ -48,19 +49,21 @@
         var mainButton = $("#model-main-button");
 
         if (isVaild) {
-            mainButton.toggleClass('oo-ui-widget-disabled', false);
-            mainButton.toggleClass('oo-ui-widget-enabled', true);
-            mainButton.attr('aria-disabled', false);
+            titleOverriding = false;
+            // mainButton.toggleClass('oo-ui-widget-disabled', false);
+            // mainButton.toggleClass('oo-ui-widget-enabled', true);
+            // mainButton.attr('aria-disabled', false);
         } else {
 
             // showing notify message only after submiting all the data.
             if (isNotifyDisplay) {
                 $.simplyToast(notifyMessage, 'danger');
             }
+            titleOverriding = true;
 
-            mainButton.toggleClass('oo-ui-widget-disabled', true);
-            mainButton.toggleClass('oo-ui-widget-enabled', false);
-            mainButton.attr('aria-disabled', "true");
+            // mainButton.toggleClass('oo-ui-widget-disabled', true);
+            // mainButton.toggleClass('oo-ui-widget-enabled', false);
+            // mainButton.attr('aria-disabled', "true");
         }
     };
 
@@ -164,6 +167,7 @@
                     disableButtonAbiltyToClick( true, notifyMessage, false );
                 } else {
                     ApiCheckIsTitleVaild(ApiFixTitle(title), function(res) {
+                        console.log(res);
                         isNewPageTitleVaild = (Boolean(res.query.pages[0].pageid) == false);
                         disableButtonAbiltyToClick( isNewPageTitleVaild, notifyMessage, true );
                     });
@@ -424,7 +428,7 @@
             var pageTitle = titleInput.getValue();
             pageTitle = ApiFixTitle(pageTitle);
             //console.log(titleInput);
-            if (pageTitle && !$("#model-main-button").is('.oo-ui-widget-disabled')) {
+            if (pageTitle ) {
                 var formatedTitle =  pageTitle;
                 
                 var selectedCategoriesText = getSelectedCategoriesInWikiText();
@@ -503,7 +507,20 @@
 
                 // active the right action
                 if (actionsSwitch[action]) {
-                    actionsSwitch[action]();
+                    console.log({
+                        titleOverriding:titleOverriding,
+                        action:action
+                    })
+                    if( titleOverriding && 'edit' == action){    
+                        mw.openConfirm( mw.msg("fennec-toolbar-rename-override-are-you-sure"), mw.msg("fennec-toolbar-yes"), mw.msg("fennec-toolbar-cancel") , function ( confirmed ) {
+                            if(confirmed){
+                                actionsSwitch[action]();
+                            }
+                        });
+                    }
+                    else{
+                        actionsSwitch[action]();
+                    }
                 }
 
             } else {

@@ -106,7 +106,7 @@ class FennecToolbarHooks {
 			//die(print_r($mustach_params,1));
 			$mustach_params['settings_url'] = $specailPage->getLocalURL();
 			$templateParser = new TemplateParser( __DIR__ . '/templates');
-			
+			$mustach_params['disabled'] = $title->isSpecialPage() ? 'disabled="disabled"' : '';
 			
 			$template->data['bodytext'] .=  $templateParser->processTemplate('side-toolbar',$mustach_params);
 		}

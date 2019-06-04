@@ -97,6 +97,9 @@
     "fennec-toolbar-item-history": "Item's revisions",
     "fennec-toolbar-item-configuration": "Configurations",
     "modal-leave-copy-label": "Leave copy",
-    "fennec-toolbar-copy-filename": "Copy file name"
+    "fennec-toolbar-copy-filename": "Copy file name",
+        "fennec-toolbar-cancel": "Cancel",
+    "fennec-toolbar-yes": "Yes",
+    "fennec-toolbar-rename-override-are-you-sure":"You are about to override exists page by this page. Proceed?"
     
 }

@@ -57,7 +57,10 @@
                 "fennec-toolbar-purge-start",
                 "fennec-toolbar-copy-filename",
                 "modal-leave-copy-label",
-                "modal-delete-message"
+                "modal-delete-message",
+                "fennec-toolbar-cancel",
+                "fennec-toolbar-yes",
+                "fennec-toolbar-rename-override-are-you-sure"
             ]
         },
         "ext.bootbox" : {

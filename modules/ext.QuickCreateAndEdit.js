@@ -48,10 +48,10 @@
         var mainButton = $("#model-main-button");
         
         if (isVaild) {
-            mainButton.toggleClass('oo-ui-widget-disabled', false);
-            mainButton.toggleClass('oo-ui-widget-enabled', true);
-            mainButton.attr('aria-disabled', false);
-            mainButton.removeAttr('disabled');
+            // mainButton.toggleClass('oo-ui-widget-disabled', false);
+            // mainButton.toggleClass('oo-ui-widget-enabled', true);
+            // mainButton.attr('aria-disabled', false);
+            // mainButton.removeAttr('disabled');
         } else {
             
             // showing notify message only after submiting all the data.
@@ -59,10 +59,10 @@
                 $.simplyToast(notifyMessage, 'danger');
             }
             
-            mainButton.toggleClass('oo-ui-widget-disabled', true);
-            mainButton.toggleClass('oo-ui-widget-enabled', false);
-            mainButton.attr('aria-disabled', "true");
-            mainButton.attr('disabled', "disabled");
+            // mainButton.toggleClass('oo-ui-widget-disabled', true);
+            // mainButton.toggleClass('oo-ui-widget-enabled', false);
+            // mainButton.attr('aria-disabled', "true");
+            // mainButton.attr('disabled', "disabled");
         }
     };
     

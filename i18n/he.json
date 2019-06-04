@@ -97,6 +97,9 @@
     "fennec-toolbar-item-cache": "ניקוי מטמון",
     "fennec-toolbar-item-history": "ניהול גירסאות",
     "modal-leave-copy-label": "השאר הפניה",
-    "fennec-toolbar-item-configuration": "הגדרות"
+    "fennec-toolbar-item-configuration": "הגדרות",
+    "fennec-toolbar-cancel": "ביטול",
+    "fennec-toolbar-yes": "כן",
+    "fennec-toolbar-rename-override-are-you-sure":"אתה עומד לדרוס דף קיים על ידי הדף הזה. האם להמשיך?"
     
 }

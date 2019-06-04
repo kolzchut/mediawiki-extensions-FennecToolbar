@@ -11,7 +11,29 @@ fabApi = {};
     /**
     * Callback function in case api fail.
     */
-    
+    mw.openConfirm = function(title, yesLabel, noLabel, callback){ 
+        var messageDialog = new OO.ui.MessageDialog(),
+            windowManager = new OO.ui.WindowManager();
+        $( 'body' ).append( windowManager.$element );
+
+        windowManager.addWindows( [ messageDialog ] );
+        windowManager.openWindow( messageDialog, {
+          title: title,
+          actions: [
+            {
+              action: 'accept',
+              label: yesLabel,
+              flags: 'primary'
+            }, {
+              action: 'decline',
+              label: noLabel,
+              flags: 'primary'
+            }
+          ]
+        }).closed.done(function(data){
+            callback('accept' === data.action)
+        });
+    }
     var failFunc = function (code, result) {
         if (code === "http") {
             mw.log("HTTP error: " + result.textStatus); // result.xhr contains the jqXHR object
