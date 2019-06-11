@@ -15,6 +15,7 @@
     },
     "config": {
         "FennecToolbarAddToolbar": false,
+        "FennecToolbarAddViewButton": false,
         "FennecToolbarAddFontawesome": false,
         "FennecToolbarAddBootstrap": false,
         "FennecToolbarFontType": "fal",

@@ -10,6 +10,11 @@
         </li>
     </ul>
     <ul class="edit-tools">
+        {{#read_url}}
+        <li>
+          <a id="ca-read" href="{{read_url}}" class="f-read" id="f-read" {{disabled}}><i class="{{font_type}} fa-eye menu-btn-create" data-placement="right" data-toggle="tooltip" title="{{item_read_label}}" ></i></a>
+        </li>
+        {{/read_url}}
         <li>
           <a id="ca-edit" href="{{advanced_edit}}" class="f-veedit" id="f-editform" {{disabled}}><i class="{{font_type}} fa-edit menu-btn-create" data-placement="right" data-toggle="tooltip" title="{{item_edit_label}}" ></i></a>
         </li>

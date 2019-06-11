@@ -56,6 +56,7 @@ class FennecToolbarHooks {
 	public static function onSkinTemplateOutputPageBeforeExec( &$skin, &$template ) {
 		global $wgFennecToolbarAddToolbar;
         global $wgFennecToolbarFontType;
+        global $wgFennecToolbarAddViewButton;
         $user = $skin->getUser();
 		if( $wgFennecToolbarAddToolbar && !$user->isAnon() ){
 			$mustach_params = [
@@ -64,6 +65,9 @@ class FennecToolbarHooks {
 			];
 			$title = $skin->getTitle();
 			if( !$title->isSpecialPage()){
+				if( $wgFennecToolbarAddViewButton ){
+					$mustach_params[ 'read_url' ] = $title->getFullUrl();
+				}
 				if( isset( $template->data['content_navigation']['views']['edit']['href'] ) ){
 					$mustach_params[ 'edit_url' ] = $template->data['content_navigation']['views']['edit']['href'];
 				}
@@ -85,6 +89,7 @@ class FennecToolbarHooks {
 				}
 			}
 			$allTranslations = [
+				"fennec-toolbar-item-read",
 				"fennec-toolbar-item-create",
 				"fennec-toolbar-item-files",
 				"fennec-toolbar-item-edit",
