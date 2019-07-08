@@ -271,16 +271,19 @@ fabApi = {};
     /**
      * API delete page.
      */
-    var deletePage = function( pageTitle ) {
-        var modalMsg = '[' + pageTitle + ']' + mw.msg("modal-delete-message");
-
-        api.postWithEditToken($.extend({
-            action: 'delete',
-            title: pageTitle,
-            formatversion: '2',
-            // Protect against errors and conflicts
-            assert: mw.user.isAnon() ? undefined : 'user'
-        }, params)).done(function () {
+    var deletePage = function( pageTitle, reason ) {
+        var modalMsg = '[' + pageTitle + ']' + mw.msg("modal-delete-message"),
+            paramstoSend = {
+                action: 'delete',
+                title: pageTitle,
+                formatversion: '2',
+                // Protect against errors and conflicts
+                assert: mw.user.isAnon() ? undefined : 'user'
+            };
+        if( reason ){
+            paramstoSend.reason = reason;
+        }
+        api.postWithEditToken($.extend(paramstoSend, params)).done(function () {
             
             reloadPurge(pageTitle, function () {                    
                 window.location.reload(true);                

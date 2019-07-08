@@ -26,10 +26,15 @@
 
     $(document).on('click',"#deletePage", function(e) {
         // pageName also include the namespace.
-        var pageName = mw.config.get('wgPageName');
+        var pageName = mw.config.get('wgPageName'),
+            html = mw.msg("modal-if-delete-page");
+        if( mw.config.get('wgFennecToolbarAddDeleteReason')){
+            html = '<div>' + html + '</div>';
+            html += '<div><label for="delete-reason">' + mw.msg("fennec-toolbar-modal-delete-reason") + '</label><input type="text" id="delete-reason"/></div>'
+        }
 
         bootbox.confirm({
-            message: mw.msg("modal-if-delete-page"),
+            message: html,
             backdrop: true,
             buttons: {
                 confirm: {
@@ -42,7 +47,8 @@
             },
             callback: function (toDelete) {
                 if(toDelete) {
-                    window.ApiDeletePage(pageName);
+                    var reasonText = $('#delete-reason') && $('#delete-reason').length ? $('#delete-reason').val() : '';
+                    window.ApiDeletePage(pageName, reasonText);
                 }
             }
         });

@@ -21,7 +21,8 @@
         "FennecToolbarFontType": "fal",
         "FennecToolbarNamespacesAndTemplates": [],
         "FennecToolbarExcludeCategories": [],
-        "FennecToolbarPredefinedCategories": []
+        "FennecToolbarPredefinedCategories": [],
+        "FennecToolbarAddDeleteReason": false
     },
     "Hooks": {
         "BeforePageDisplay": [
@@ -238,6 +239,7 @@
                 "modal-create-new-red-page",
                 "modal-delete-button",
                 "modal-cancel-button",
+                "fennec-toolbar-modal-delete-reason",
                 "modal-if-delete-page"
             ]           
         },

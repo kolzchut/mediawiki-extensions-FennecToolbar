@@ -101,6 +101,7 @@
     "fennec-toolbar-copy-filename": "Copy file name",
         "fennec-toolbar-cancel": "Cancel",
     "fennec-toolbar-yes": "Yes",
+    "fennec-toolbar-modal-delete-reason": "Reason for deleting",
     "fennec-toolbar-rename-override-are-you-sure":"You are about to override exists page by this page. Proceed?"
     
 }

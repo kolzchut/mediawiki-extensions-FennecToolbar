@@ -10,24 +10,31 @@ class FennecToolbarHooks {
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin) {
 		
         $fennecToolbarNamespacesAndTemplates = FennecToolbarHooks::getFennecToolbarNamespacesAndTemplates();
-        global $wgFennecToolbarPredefinedCategories;
-        global $wgFennecToolbarExcludeCategories;
-        global $wgFennecToolbarAddToolbar;
-        global $wgFennecToolbarAddBootstrap;
-        global $wgFennecToolbarAddFontawesome;
-        global $wgFennecToolbarFontType;
+        $configsToSend = [];
+        $configsToGet = [
+        	'FennecToolbarPredefinedCategories',
+			'FennecToolbarExcludeCategories',
+			'FennecToolbarFontType',
+			'FennecToolbarAddDeleteReason',
+        ];
+        $conf = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
+
+        $wgFennecToolbarAddToolbar = $conf->get('FennecToolbarAddToolbar');
+		$wgFennecToolbarAddBootstrap = $conf->get('FennecToolbarAddBootstrap');
+		$wgFennecToolbarAddFontawesome = $conf->get('FennecToolbarAddFontawesome');
+
+        foreach ($configsToGet as $confPart ) {
+        	$configsToSend['wg' . $confPart] = $conf->get($confPart);
+        }
+        $configsToSend['wgFennecToolbarNamespacesAndTemplates'] = $fennecToolbarNamespacesAndTemplates;
 		
 
 		$user = $skin->getUser();
 		
 		// Check if the user is connect
 		if ( !$user->isAnon() ) {
-			$configs = array(
-                'wgFennecToolbarNamespacesAndTemplates' => $fennecToolbarNamespacesAndTemplates,
-                'wgFennecToolbarExcludeCategories' => $wgFennecToolbarExcludeCategories,
-                'wgFennecToolbarPredefinedCategories' => $wgFennecToolbarPredefinedCategories,
-			);
-			$out->addJsConfigVars( $configs );
+			
+			$out->addJsConfigVars( $configsToSend );
 		
 			$out->addModules( array(
                 'ext.ApiActions',

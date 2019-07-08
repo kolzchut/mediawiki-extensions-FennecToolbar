@@ -101,6 +101,7 @@
     "fennec-toolbar-item-configuration": "הגדרות",
     "fennec-toolbar-cancel": "ביטול",
     "fennec-toolbar-yes": "כן",
+    "fennec-toolbar-modal-delete-reason": "סיבת המחיקה",
     "fennec-toolbar-rename-override-are-you-sure":"אתה עומד לדרוס דף קיים על ידי הדף הזה. האם להמשיך?"
     
 }
