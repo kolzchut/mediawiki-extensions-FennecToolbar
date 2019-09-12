@@ -11,7 +11,8 @@
     "license-name": "GPL v2",
     "type": "other",
     "AutoloadClasses": {
-        "FennecToolbarHooks": "FennecToolbar.hooks.php"
+        "FennecToolbarHooks": "FennecToolbar.hooks.php",
+        "FennecToolbarHooksHelper": "includes/FennecToolbarHooksHelper.php"
     },
     "config": {
         "FennecToolbarAddToolbar": false,
@@ -20,6 +21,7 @@
         "FennecToolbarAddBootstrap": false,
         "FennecToolbarFontType": "fal",
         "FennecToolbarNamespacesAndTemplates": [],
+        "FennecToolbarNamespaces": ["main"],
         "FennecToolbarExcludeCategories": [],
         "FennecToolbarPredefinedCategories": [],
         "FennecToolbarAddDeleteReason": false

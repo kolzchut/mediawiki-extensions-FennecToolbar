@@ -248,6 +248,18 @@
                 };
                 dialogActionButtons.push(deletePageButton);
             }
+            var options = [];
+            $.forEach(mw.config.get('wgFennecToolbarNamespaces'), function(ind, part){
+                var option = new OO.ui.MenuOptionWidget({
+                    data: part,
+                    label: part
+                });
+                options.push( option );
+
+            });
+
+            namespaceSelector.setOptions(options);
+            dialogActionButtons.push(namespaceSelector);
             leaveCopy = new OO.ui.CheckboxInputWidget({
                 value: '1',
                 selected:true

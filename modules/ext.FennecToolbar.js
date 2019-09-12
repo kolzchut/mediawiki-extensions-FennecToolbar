@@ -229,7 +229,7 @@
 
                 // Check if the current page is special page.
                 // Or user is not currently editing a page using VisualEditor
-                console.log(currentUserInfoList,'currentUserInfoList');
+                //console.log(currentUserInfoList,'currentUserInfoList');
                 if (!$('body').hasClass("ns-special") && isVisualEditorNotActiveted()) {
                     var pageTitle = mw.config.get('wgTitle');
                     // pageName also include the namespace.

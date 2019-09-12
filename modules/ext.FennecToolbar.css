@@ -1,3 +1,6 @@
+#fennec-navbarside2{
+    z-index: 999;
+}
 #md-fab-menu .mfb-component__button--main {
     background-color: #d23f31 !important;
     cursor: pointer;

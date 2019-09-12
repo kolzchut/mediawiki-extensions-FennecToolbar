@@ -10,23 +10,27 @@ class FennecToolbarHooks {
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin) {
 		
         $fennecToolbarNamespacesAndTemplates = FennecToolbarHooks::getFennecToolbarNamespacesAndTemplates();
+
         $configsToSend = [];
         $configsToGet = [
         	'FennecToolbarPredefinedCategories',
 			'FennecToolbarExcludeCategories',
 			'FennecToolbarFontType',
 			'FennecToolbarAddDeleteReason',
+			'FennecToolbarNamespaces',
         ];
         $conf = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
 
-        $wgFennecToolbarAddToolbar = $conf->get('FennecToolbarAddToolbar');
-		$wgFennecToolbarAddBootstrap = $conf->get('FennecToolbarAddBootstrap');
-		$wgFennecToolbarAddFontawesome = $conf->get('FennecToolbarAddFontawesome');
 
         foreach ($configsToGet as $confPart ) {
         	$configsToSend['wg' . $confPart] = $conf->get($confPart);
         }
+
+        $wgFennecToolbarAddToolbar = $conf->get('FennecToolbarAddToolbar');
+		$wgFennecToolbarAddBootstrap = $conf->get('FennecToolbarAddBootstrap');
+		$wgFennecToolbarAddFontawesome = $conf->get('FennecToolbarAddFontawesome');
         $configsToSend['wgFennecToolbarNamespacesAndTemplates'] = $fennecToolbarNamespacesAndTemplates;
+
 		
 
 		$user = $skin->getUser();
@@ -57,70 +61,20 @@ class FennecToolbarHooks {
 		}
 		return true;
 	}
-	public static function replaceAction( $url, $action) {
-		return preg_replace('/action=edit/', "action=$action", $url);
-	}
+
 	public static function onSkinTemplateOutputPageBeforeExec( &$skin, &$template ) {
 		global $wgFennecToolbarAddToolbar;
-        global $wgFennecToolbarFontType;
-        global $wgFennecToolbarAddViewButton;
+  
         $user = $skin->getUser();
-		if( $wgFennecToolbarAddToolbar && !$user->isAnon() ){
-			$mustach_params = [
-				'tooltip_side' => 'right',
-				'font_type' => $wgFennecToolbarFontType,
-			];
-			$title = $skin->getTitle();
-			if( !$title->isSpecialPage()){
-				if( $wgFennecToolbarAddViewButton ){
-					$mustach_params[ 'read_url' ] = $title->getFullUrl();
-				}
-				if( isset( $template->data['content_navigation']['views']['edit']['href'] ) ){
-					$mustach_params[ 'edit_url' ] = $template->data['content_navigation']['views']['edit']['href'];
-				}
-				if( isset( $template->data['content_navigation']['views']['ve-edit']['href'] ) ){
-					$mustach_params[ 'vedit_url' ] = $template->data['content_navigation']['views']['ve-edit']['href'];
-					$mustach_params[ 'advanced_edit' ] = $template->data['content_navigation']['views']['ve-edit']['href'];
-				}
-				if( isset( $template->data['content_navigation']['views']['history']['href'] ) ){
-					$mustach_params[ 'history_url' ] = $template->data['content_navigation']['views']['history']['href'];
-				}
-				if( isset( $template->data['content_navigation']['views']['purge']['href'] ) ){
-					$mustach_params[ 'purge_url' ] = $template->data['content_navigation']['views']['purge']['href'];
-				}
-			}
-			if(class_exists('PFFormLinker')){
-				$isEditableByForm = PFFormLinker::getDefaultFormsForPage($title);
-				if($isEditableByForm && count($isEditableByForm)){
-					$mustach_params[ 'advanced_edit' ] = self::replaceAction($mustach_params[ 'edit_url' ], 'formedit');
-				}
-			}
-			$allTranslations = [
-				"fennec-toolbar-item-read",
-				"fennec-toolbar-item-create",
-				"fennec-toolbar-item-files",
-				"fennec-toolbar-item-edit",
-				"fennec-toolbar-item-code-edit",
-				"fennec-toolbar-item-rename",
-				"fennec-toolbar-item-alef",
-				"fennec-toolbar-item-categories",
-				"fennec-toolbar-item-delete",
-				"fennec-toolbar-item-cache",
-				"fennec-toolbar-item-history",
-				"fennec-toolbar-item-configuration",
-			];
-			foreach ($allTranslations as $translation ) {
-				$key = preg_replace("/\-/", '_',preg_replace( '/fennec-toolbar-/', '', $translation)) . '_label';
-				//echo "key: $key<br/>";
-				$mustach_params[ $key ] = wfMessage($translation)->text();
-			}
-			$specailPage = Title::newFromText('special:SpecialPages');
-			//die(print_r($mustach_params,1));
-			$mustach_params['settings_url'] = $specailPage->getLocalURL();
-			$templateParser = new TemplateParser( __DIR__ . '/templates');
-			$mustach_params['disabled'] = $title->isSpecialPage() ? 'disabled="disabled"' : '';
-			
-			$template->data['bodytext'] .=  $templateParser->processTemplate('side-toolbar',$mustach_params);
+		if( $wgFennecToolbarAddToolbar && !$user->isAnon() ){ 
+			$params = FennecToolbarHooksHelper::getParams( $skin, $template);
+
+
+ 			$html = FennecToolbarHooksHelper::getToolbarHtml( $params , $skin, $template);
+ 			// print_r($links);
+ 			// die();
+ 			
+			$template->data['bodytext'] .=  $html;//$templateParser->processTemplate('side-toolbar',$mustach_params);
 		}
 		
 		//die(print_r(((array)),1));
@@ -133,4 +87,5 @@ class FennecToolbarHooks {
 	        "form" => ""
 		]];
 	}
+	
 }
