@@ -187,7 +187,7 @@
         var namespaceSelector = new OO.ui.DropdownInputWidget( {
             disabled: isNewRedLink,
             dropdown: {
-                icon: "code",
+                icon: isNewRedLink ? "code" : '',
                 label: mw.msg("modal-namespace-selector-label"),
                 iconTitle: mw.msg("modal-namespace-selector-label")
             }
@@ -249,17 +249,17 @@
                 dialogActionButtons.push(deletePageButton);
             }
             var options = [];
-            $.forEach(mw.config.get('wgFennecToolbarNamespaces'), function(ind, part){
+            $.each(mw.config.get('wgFennecToolbarNamespaces'), function(ind, part){
                 var option = new OO.ui.MenuOptionWidget({
-                    data: part,
-                    label: part
+                    data: part.namespace,
+                    label: part.label
                 });
                 options.push( option );
 
             });
-
+            //console.log("isNewRedLink",isNewRedLink);
             namespaceSelector.setOptions(options);
-            dialogActionButtons.push(namespaceSelector);
+            //dialogActionButtons.push(namespaceSelector);
             leaveCopy = new OO.ui.CheckboxInputWidget({
                 value: '1',
                 selected:true
