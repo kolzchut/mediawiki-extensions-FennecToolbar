@@ -248,18 +248,8 @@
                 };
                 dialogActionButtons.push(deletePageButton);
             }
-            var options = [];
-            $.each(mw.config.get('wgFennecToolbarNamespaces'), function(ind, part){
-                var option = new OO.ui.MenuOptionWidget({
-                    data: part.namespace,
-                    label: part.label
-                });
-                options.push( option );
-
-            });
+            
             //console.log("isNewRedLink",isNewRedLink);
-            namespaceSelector.setOptions(options);
-            //dialogActionButtons.push(namespaceSelector);
             leaveCopy = new OO.ui.CheckboxInputWidget({
                 value: '1',
                 selected:true
@@ -410,20 +400,38 @@
             dialogActionButtons.push(redirectButton);
         }
 
-        fieldset.addItems( [
-            new OO.ui.FieldLayout(titleInput, {
-                id: "modal-title-fieldset",
+        var mainItems = [],
+            withRename = mw.config.get('wgFennecToolbarNamespacesSelectOnRename');
+        if( withRename ){
+            fieldset.$element.addClass('with-namespaces-selector');
+            var options = [];
+            $.each(mw.config.get('wgFennecToolbarNamespaces'), function(ind, part){
+                var option = new OO.ui.MenuOptionWidget({
+                    data: part.namespace,
+                    label: part.title
+                });
+                options.push( option );
+
+            });
+            namespaceSelector.setOptions(options);
+            namespaceSelector.setValue( mw.config.get('wgCanonicalNamespace') );
+
+            mainItems.push(new OO.ui.FieldLayout(namespaceSelector, {
+                id: "modal-select-namespace-fieldset",
                 label: titleLabel,
+                classes: ['select-namespace'],
+                align: 'inline'
+            }));
+        }
+        mainItems.push(new OO.ui.FieldLayout(titleInput, {
+                id: "modal-title-fieldset",
+                label: withRename ? '' : titleLabel,
                 classes: ['materialFieldset'],
-                align: 'top'
-            }),
-            // new OO.ui.FieldLayout(categoriesInputSelector, {
-            //     id: "modal-categories-fieldset",
-            //     label: mw.msg("modal-categories-selector-label"),
-            //     classes: ['materialFieldset'],
-            //     align: 'top'
-            // })
-        ] );
+                align: withRename ? 'inline':'top'
+            }));
+        
+        fieldset.addItems( mainItems );
+        
         if( leaveCopy ){
              fieldset.addItems( [
                     new OO.ui.FieldLayout(leaveCopy, {
@@ -438,6 +446,9 @@
         var mainFunction = function (dialog, action, windowManager) {
            
             var pageTitle = titleInput.getValue();
+            if( $('#modal-select-namespace-fieldset .oo-ui-inputWidget-input').length ) {
+                pageTitle = $('#modal-select-namespace-fieldset .oo-ui-inputWidget-input').val() + ':' + pageTitle;
+            }
             pageTitle = ApiFixTitle(pageTitle);
             //console.log(titleInput);
             if (pageTitle ) {

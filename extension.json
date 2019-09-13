@@ -21,10 +21,12 @@
         "FennecToolbarAddBootstrap": false,
         "FennecToolbarFontType": "fal",
         "FennecToolbarNamespacesAndTemplates": [],
-        "FennecToolbarNamespaces": [{
-            "namespace":"main",
-            "data":"Main"
-        }
+        "FennecToolbarNamespacesSelectOnRename": false,
+        "FennecToolbarNamespaces": [
+            {
+                "namespace":"main",
+                "data":"Main"
+            }
         ],
         "FennecToolbarExcludeCategories": [],
         "FennecToolbarPredefinedCategories": [],

@@ -18,6 +18,7 @@ class FennecToolbarHooks {
 			'FennecToolbarFontType',
 			'FennecToolbarAddDeleteReason',
 			'FennecToolbarNamespaces',
+			'FennecToolbarNamespacesSelectOnRename',
         ];
         $conf = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
 
@@ -31,8 +32,7 @@ class FennecToolbarHooks {
 		$wgFennecToolbarAddFontawesome = $conf->get('FennecToolbarAddFontawesome');
         $configsToSend['wgFennecToolbarNamespacesAndTemplates'] = $fennecToolbarNamespacesAndTemplates;
 
-		
-
+	
 		$user = $skin->getUser();
 		
 		// Check if the user is connect
