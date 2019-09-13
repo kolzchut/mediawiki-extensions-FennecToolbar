@@ -16,8 +16,8 @@ ul#md-fab-menu {
 }
 #form-create-item .input-item-name{
     margin-right: 20px;
-
-
+    max-width: calc( 100% - 182px );
+    box-sizing: border-box;
 }
 #form-create-item #input_button_1{
     margin-right: 25px;
