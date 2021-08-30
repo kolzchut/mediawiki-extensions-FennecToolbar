@@ -147,7 +147,7 @@ class FennecToolbarHooksHelper{
 				'tag' => 'a',
 				'attrs' => [
 					"id" => "ca-read", 
-					"href" => $params['read_url'],
+					"href" => $params['read_url'] ?? null,
 					"class" => "f-read", 
 					"id" => "f-read", 
 				]
@@ -164,7 +164,7 @@ class FennecToolbarHooksHelper{
 				'tag' => 'a',
 				'attrs' => [
 					"id" => "ca-edit", 
-					"href" => $params['advanced_edit'], 
+					"href" => $params['advanced_edit'] ?? null,
 					"class" => "f-veedit", 
 					"id" => "f-editform", 
 					"disabled" => $params['disabled']
@@ -181,7 +181,7 @@ class FennecToolbarHooksHelper{
 			'wrapper' => [
 				'tag' => 'a',
 				'attrs' => [
-					"href" => $params['edit_url'], 
+					"href" => $params['edit_url'] ?? null,
 					"id" => "f-edit", 
 					"disabled" => $params['disabled']
 				]
@@ -251,7 +251,7 @@ class FennecToolbarHooksHelper{
 			'wrapper' => [
 				'tag' => 'a',
 				'attrs' => [
-					"href" => $params['history_url'], 
+					"href" => $params['history_url'] ?? null,
 					"id" => "f-history", 
 					"disabled" => $params['disabled']
 				]
