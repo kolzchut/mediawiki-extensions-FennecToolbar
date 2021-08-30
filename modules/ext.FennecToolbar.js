@@ -116,7 +116,7 @@
                         size:"30",
                         id:"formInput_Item",
                         placeholder:mw.msg('spni-insert-item-name'),
-                        class : "formInput input-item-name float-right col-sm-12 col-md-7",
+                        class : "formInput form-control input-item-name float-right col-sm-12 col-md-7",
                         name:"page_name",
                         type:"text"
                     }),
