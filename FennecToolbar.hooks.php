@@ -53,11 +53,11 @@ class FennecToolbarHooks {
 			if($wgFennecToolbarAddFontawesome){
 				$out->addHeadItem('fennect-fontawesome',$wgFennecToolbarAddFontawesome );
 			}
-			if($wgFennecToolbarAddBootstrap){
-				$out->addModules([
-					"ext.fennec.separate.bootstrap"
-					]);
-			}
+		}
+		if($wgFennecToolbarAddBootstrap){
+			$out->addModules([
+				"ext.fennec.separate.bootstrap"
+			]);
 		}
 		return true;
 	}
