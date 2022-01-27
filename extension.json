@@ -76,12 +76,14 @@
         "ext.bootbox" : {
             "scripts": [ "lib/bootbox/bootbox.js"]
         },
+        "ext.fennec.separate.bootstrap.styles" :{
+            "styles" : [
+                "lib/bootstrap/css/bootstrap.min.css"
+            ]
+        },
         "ext.fennec.separate.bootstrap" :{
             "scripts": [
                 "lib/bootstrap/js/bootstrap.min.js"
-            ],
-            "styles" : [
-                "lib/bootstrap/css/bootstrap.min.css"
             ]
         },
         "ext.fennec.separate.fontawesome" :{

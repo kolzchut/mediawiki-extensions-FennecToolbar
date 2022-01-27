@@ -55,9 +55,8 @@ class FennecToolbarHooks {
 			}
 		}
 		if($wgFennecToolbarAddBootstrap){
-			$out->addModules([
-				"ext.fennec.separate.bootstrap"
-			]);
+			$out->addModuleStyles('ext.fennec.separate.bootstrap.styles' );
+			$out->addModules( 'ext.fennec.separate.bootstrap' );
 		}
 		return true;
 	}
