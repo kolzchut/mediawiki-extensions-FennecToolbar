@@ -122,7 +122,22 @@ class FennecToolbarHooksHelper{
 		$html .= Html::closeElement('div');
 		return $html;
 	}
+
+	/**
+	 * @param $params
+	 * @param SkinTemplate $skin
+	 * @param QuickTemplate $template
+	 *
+	 * @return array|array[]|mixed
+	 * @throws FatalError
+	 * @throws MWException
+	 */
 	public static function getToolbarLinks( $params, $skin, $template ){
+
+		$isWatched = isset( $template->data['content_navigation']['actions']['unwatch'] );
+		$actions = $template->data['content_navigation']['actions'];
+		$params['watch_url'] = $isWatched ?  $actions['unwatch']['href'] : $actions['watch']['href'];
+
 		$base = self::getToolbarLinksBase();
 		$base['pages-and-files']['items'][] = [
 			'attrs' => [
@@ -193,6 +208,20 @@ class FennecToolbarHooksHelper{
 				"title" => $params['item_code_edit_label'],
 			]
 		];
+		$base['page-actions']['items'][] = [
+			'wrapper' => [
+				'tag' => 'a',
+				'attrs' => [
+					"href" => $params[ 'watch_url'],
+					"id" => $isWatched ? "ca-unwatch" : "ca-watch",
+				]
+			],
+			'attrs' => [
+				"class" => ( $isWatched ? 'fas' : 'fal' ) . ' fa-star',
+				"title" => $skin->msg( $isWatched ? 'unwatch' : 'watch' )->escaped(),
+			]
+		];
+
 		$base['edit-tools']['items'][] = [
 			'attrs' => [
 				"class" => "{$params['font_type']} fa-i-cursor", 
