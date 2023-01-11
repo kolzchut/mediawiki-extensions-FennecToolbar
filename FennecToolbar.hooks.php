@@ -8,8 +8,7 @@
 
 class FennecToolbarHooks {
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin) {
-		
-        $fennecToolbarNamespacesAndTemplates = FennecToolbarHooks::getFennecToolbarNamespacesAndTemplates();
+		$fennecToolbarNamespacesAndTemplates = FennecToolbarHooks::getFennecToolbarNamespacesAndTemplates();
 
         $configsToSend = [];
         $configsToGet = [
@@ -35,9 +34,8 @@ class FennecToolbarHooks {
 	
 		$user = $skin->getUser();
 		
-		// Check if the user is connect
+		// Check if the user is logged-in
 		if ( !$user->isAnon() ) {
-			
 			$out->addJsConfigVars( $configsToSend );
 		
 			$out->addModules( array(
@@ -58,7 +56,6 @@ class FennecToolbarHooks {
 			$out->addModuleStyles('ext.fennec.separate.bootstrap.styles' );
 			$out->addModules( 'ext.fennec.separate.bootstrap' );
 		}
-		return true;
 	}
 
 	public static function onSkinTemplateOutputPageBeforeExec( &$skin, &$template ) {
@@ -70,14 +67,10 @@ class FennecToolbarHooks {
 
 
  			$html = FennecToolbarHooksHelper::getToolbarHtml( $params , $skin, $template);
- 			// print_r($links);
- 			// die();
- 			
-			$template->data['bodytext'] .=  $html;//$templateParser->processTemplate('side-toolbar',$mustach_params);
+			$template->data['bodytext'] .=  $html;
 		}
-		
-		//die(print_r(((array)),1));
 	}
+
 	public static function getFennecToolbarNamespacesAndTemplates(){
 		global $wgFennecToolbarNamespacesAndTemplates;
 		return count( $wgFennecToolbarNamespacesAndTemplates ) ? $wgFennecToolbarNamespacesAndTemplates : [[

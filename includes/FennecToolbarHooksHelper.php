@@ -1,9 +1,14 @@
 <?php
 
 class FennecToolbarHooksHelper{
+	/**
+	 * @param Skin $skin
+	 *
+	 * @return array
+	 */
 	public static function getParams( $skin, $template ){
-		global $wgFennecToolbarFontType;
-        global $wgFennecToolbarAddViewButton;
+		global $wgFennecToolbarFontType, $wgFennecToolbarAddViewButton;
+
 		$toolbarParams = [
 			'tooltip_side' => 'right',
 			'font_type' => $wgFennecToolbarFontType,
@@ -125,7 +130,7 @@ class FennecToolbarHooksHelper{
 
 	/**
 	 * @param $params
-	 * @param SkinTemplate $skin
+	 * @param Skin $skin
 	 * @param QuickTemplate $template
 	 *
 	 * @return array|array[]|mixed
@@ -133,9 +138,8 @@ class FennecToolbarHooksHelper{
 	 * @throws MWException
 	 */
 	public static function getToolbarLinks( $params, $skin, $template ){
-
-		$isWatched = isset( $template->data['content_navigation']['actions']['unwatch'] );
 		$actions = $template->data['content_navigation']['actions'];
+		$isWatched = isset( $actions['unwatch'] );
 		$params['watch_url'] = $isWatched ?  $actions['unwatch']['href'] : $actions['watch']['href'];
 
 		$base = self::getToolbarLinksBase();
