@@ -48,9 +48,7 @@
     "ResourceModules": {
         "ext.ApiActions": { 
             "dependencies": [           
-                "mediawiki.api",
-                "mediawiki.api.edit",
-                "mediawiki.api.parse"
+                "mediawiki.api"
             ],
             "scripts": [
                 "modules/ext.ApiActions.js"
