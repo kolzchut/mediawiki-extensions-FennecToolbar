@@ -1,365 +1,253 @@
 {
-    "name": "FennecToolbar",
-    "version": "0.3.0",
-    "author": [
-        "[http://FennecToolbar.co.il FennecToolbar]",
-        "[[mw:user:HagaiAsaban|Hagai Asaban]]",
-        "[[mw:user:Yacohen|Yacohen]]"
-    ],
-    "url": "doalogue-FennecToolbar/FennecToolbar",
-    "descriptionmsg": "FennecToolbar-fab-desc",
-    "license-name": "GPL v2",
-    "type": "other",
-    "AutoloadClasses": {
-        "FennecToolbarHooks": "FennecToolbar.hooks.php",
-        "FennecToolbarHooksHelper": "includes/FennecToolbarHooksHelper.php"
-    },
-    "config": {
-        "FennecToolbarAddToolbar": false,
-        "FennecToolbarAddViewButton": false,
-        "FennecToolbarAddFontawesome": false,
-        "FennecToolbarAddBootstrap": false,
-        "FennecToolbarFontType": "fal",
-        "FennecToolbarNamespacesAndTemplates": [],
-        "FennecToolbarNamespacesSelectOnRename": false,
-        "FennecToolbarNamespaces": [
-            {
-                "namespace":"main",
-                "data":"Main"
-            }
-        ],
-        "FennecToolbarExcludeCategories": [],
-        "FennecToolbarPredefinedCategories": [],
-        "FennecToolbarAddDeleteReason": false
-    },
-    "Hooks": {
-        "BeforePageDisplay": [
-            "FennecToolbarHooks::onBeforePageDisplay"
-        ],
-        "SkinTemplateOutputPageBeforeExec": [
-            "FennecToolbarHooks::onSkinTemplateOutputPageBeforeExec"
-        ]
-    },
-    "MessagesDirs": {
-        "FennecToolbar": [
-            "i18n"
-        ]
-    },
-    "ResourceModules": {
-        "ext.ApiActions": { 
-            "dependencies": [           
-                "mediawiki.api"
-            ],
-            "scripts": [
-                "modules/ext.ApiActions.js"
-            ],
-            "messages": [
-                "create-page-redirect-to-edit",
-                "edited-successfully",
-                "created-successfully",
-                "modal-continue-to-page",
-                "modal-close-button",
-                "modal-delete-title",
-                "fennec-toolbar-purge-error",
-                "fennec-toolbar-purge-success",
-                "fennec-toolbar-purge-start",
-                "fennec-toolbar-copy-filename",
-                "modal-leave-copy-label",
-                "modal-delete-message",
-                "fennec-toolbar-cancel",
-                "fennec-toolbar-yes",
-                "fennec-toolbar-rename-override-are-you-sure"
-            ]
-        },
-        "ext.bootbox" : {
-            "scripts": [ "lib/bootbox/bootbox.js"]
-        },
-        "ext.fennec.separate.bootstrap.styles" :{
-            "styles" : [
-                "lib/bootstrap/css/bootstrap.min.css"
-            ]
-        },
-        "ext.fennec.separate.bootstrap" :{
-            "scripts": [
-                "lib/bootstrap/js/bootstrap.min.js"
-            ]
-        },
-        "ext.fennec.separate.fontawesome" :{
-             "styles" : [
-                "lib/fontawesome/css/all.css"
-            ]
-        },
-        "ext.MaterialDialog": {
-            "dependencies": [
-                "ext.MaterialFAB",                
-                "ext.visualEditor.core",
-                "oojs",
-                "oojs-ui",
-                "oojs-ui-core",
-                "oojs-ui-widgets",
-                "oojs-ui.styles.icons-editing-core",
-                "oojs-ui.styles.icons-moderation",
-                "oojs-ui.styles.icons-content",
-                "mediawiki.widgets"
-            ],
-            "scripts": [                
-                "lib/simply-toast/simply-toast.min.js",
-                "lib/sweetalert/sweetalert.min.js",
-                "lib/magic-suggest/magic-suggest.min.js",
-                "lib/tingle/tingle.js",
-                "lib/icheck/icheck.min.js",
-                "lib/underscore/underscore.min.js",
-                "modules/ext.MaterialDialog.js"
-            ],
-            "styles": [                
-                "lib/simply-toast/simply-toast.min.css",
-                "lib/sweetalert/sweetalert.min.css",
-                "lib/magic-suggest/magic-suggest.min.css",
-                "lib/tingle/tingle.css",
-                "lib/icheck/skins/square/blue.css",
-                "modules/ext.MaterialDialog.css"
-            ],
-            "templates": {
-                "dialog.mustache" : "templates/dialog.mustache"
-            }
-        },
-        "ext.FilesList": {
-            "dependencies": [
-                "ext.MaterialDialog",
-                "ext.ApiActions"
-            ],
-            "scripts": [
-                "lib/moment/moment.min.js",
-                "lib/DataTables/datatables.min.js",
-                "lib/DataTables/Highlight/dataTables.searchHighlight.min.js",
-                "lib/DataTables/Highlight/jquery.highlight.js",
-                "modules/ext.FilesList.js"
-            ],
-            "styles": [                
-                "lib/DataTables/datatables.min.css",
-                "lib/DataTables/DataTables-1.10.12/css/dataTables.foundation.min.css",
-                "modules/ext.FilesList.css"
-            ],
-            "messages": [
-                "title-selected-file",
-                "title-click-select-file",
-                "title-select-file",
-                "files-toggle-popup",                
-                "modal-click-to-watch-the-file",
-                "modal-click-to-the-file-page",
-                "modal-add-files-page",
-                "modal-if-delete-file",
-                "modal-delete-button",
-                "modal-cancel-button",
-                "modal-create-button",
-                "modal-create-button-submit",
-                "modal-choose-item-type",
-                "modal-please-fill-all-fields",
-                "processing",
-                "lengthMenu",
-                "zeroRecords",
-                "emptyTable",
-                "info",
-                "infoEmpty",
-                "infoFiltered",
-                "infoPostFix",
-                "searchPlaceholder",
-                "url",
-                "paginate-first",
-                "paginate-previous",
-                "paginate-next",
-                "paginate-last",
-                "title-image",
-                "title-name",
-                "title-description",
-                "title-file-usage",
-                "title-user",
-                "title-date"
-            ],
-            "templates": {
-                "data-table.mustache" : "templates/data-table.mustache",
-                "side-toolbar.mustache" : "templates/side-toolbar.mustache"
-            }           
-        },
-        "ext.DragAndDropUpload": {
-            "dependencies": [
-                "ext.MaterialDialog",
-                "ext.ApiActions",
-                "ext.FilesList",
-                "mediawiki.Upload",
-                "mediawiki.Upload.Dialog"
-            ],
-            "scripts": [
-                "modules/ext.DragAndDropUpload.js",
-                "lib/jQuery.filer/js/jquery.filer.min.js"
-            ],
-            "styles": [
-                "modules/ext.DragAndDropUpload.css",
-                "lib/jQuery.filer/css/jquery.filer.css",
-                "lib/jQuery.filer/css/themes/dragDropBox.css"
-            ],            
-            "messages": [
-                "redirect-files-list",
-                "uploaded-successfully",
-                "modal-upload-label-button",
-                "upload-files-dialog-title",
-                "modal-popup-warning-file-missing",
-                "modal-categories-placeholder",
-                "modal-categories-no-suggestion",
-                "upload-toggle-popup",
-                "drag-n-drop",
-                "or",
-                "choose-files"
-            ]   
-        },
-        "ext.QuickCreateAndEdit": {
-            "dependencies": [
-                "ext.MaterialDialog",
-                "ext.ApiActions",
-                "mediawiki.Title"
-            ],
-            "scripts": [
-                "modules/ext.QuickCreateAndEdit.js",
-                "modules/ext.DeletePage.js"
-            ],
-            "messages": [
-                "modal-title-input-placeholder",
-                "modal-title-input-label",
-                "modal-title-rename-input-label",
-                "modal-popup-warning-page-exists",
-                "modal-categories-selector-label",
-                "modal-categories-placeholder",
-                "modal-namespace-selector-label",
-                "modal-namespace-template-selector-label",
-                "modal-template-selector-label",
-                "modal-template-placeholder",
-                "modal-popup-warning-template-not-exists",
-                "modal-popup-warning-title-missing",
-                "modal-create-page-button",
-                "modal-save-page-button",
-                "modal-create-save-popup",
-                "modal-edit-save-popup",
-                "modal-create-button",
-                "modal-edit-page-button",
-                "modal-redirect-ve-button",
-                "modal-categories-no-suggestion",                
-                "modal-ok-button",
-                "modal-create-new-red-page",
-                "modal-delete-button",
-                "modal-cancel-button",
-                "fennec-toolbar-modal-delete-reason",
-                "modal-if-delete-page"
-            ]           
-        },
-        "ext.QuickEditPageName": {
-            "dependencies": [
-                "ext.MaterialDialog",
-                "ext.ApiActions",
-                "mediawiki.Title"
-            ],
-            "scripts": [
-                "modules/ext.QuickEditPageName.js"
-            ],
-            "messages": [
-                "modal-title-input-placeholder",
-                "modal-title-input-label",
-                "modal-title-rename-input-label",
-                "modal-popup-warning-page-exists",
-                "modal-categories-selector-label",
-                "modal-categories-placeholder",
-                "modal-namespace-selector-label",
-                "modal-namespace-template-selector-label",
-                "modal-template-selector-label",
-                "modal-template-placeholder",
-                "modal-popup-warning-template-not-exists",
-                "modal-popup-warning-title-missing",
-                "modal-create-page-button",
-                "modal-save-page-button",
-                "modal-create-save-popup",
-                "modal-edit-save-popup",
-                "modal-edit-page-button",
-                "modal-redirect-ve-button",
-                "modal-categories-no-suggestion",
-                "modal-ok-button",
-                "modal-create-new-red-page",
-                "modal-delete-button",
-                "modal-cancel-button",
-                "modal-if-delete-page"
-            ]
-        },
-        "ext.QuickCreateAndEditCategories": {
-            "dependencies": [
-                "ext.MaterialDialog",
-                "ext.ApiActions",
-                "mediawiki.Title"
-            ],
-            "scripts": [
-                "modules/ext.QuickCreateAndEditCategories.js"
-            ],
-            "messages": [
-                "modal-title-input-placeholder",
-                "modal-title-input-label",
-                "modal-title-rename-input-label",
-                "modal-popup-warning-page-exists",
-                "modal-categories-selector-label",
-                "modal-categories-placeholder",
-                "modal-namespace-selector-label",
-                "modal-namespace-template-selector-label",
-                "modal-template-selector-label",
-                "modal-template-placeholder",
-                "modal-popup-warning-template-not-exists",
-                "modal-popup-warning-title-missing",
-                "modal-create-page-button",
-                "modal-save-page-button",
-                "modal-create-save-popup",
-                "modal-edit-save-popup",
-                "modal-edit-page-button",
-                "modal-redirect-ve-button",
-                "modal-categories-no-suggestion",
-                "modal-ok-button",
-                "modal-create-new-red-page",
-                "modal-delete-button",
-                "modal-cancel-button",
-                "modal-if-delete-page"
-            ]
-        },
-        "ext.FennecToolbar.first": {
-            "position": "top",
-            "styles": [
-                "modules/ext.fennec-toolbar.less"
-            ]
-        },
-        "ext.FennecToolbar": {
-            "dependencies": [
-                "ext.MaterialDialog",
-                "ext.ApiActions",
-                "ext.bootbox",
-                "ext.QuickCreateAndEdit",
-                "ext.DragAndDropUpload",
-                "ext.FilesList",                
-                "mediawiki.Title",
-                "ext.QuickEditPageName",
-                "ext.QuickCreateAndEditCategories"
-            ],
-            "scripts": [
-                "modules/ext.FennecToolbar.js"                
-            ],
-            "styles": [
-                "modules/ext.FennecToolbar.css"
-            ],
-            "messages": [               
-                "create-toggle-popup",
-                "spni-insert-item-name",
-                "edit-toggle-popup",
-                "quick-edit-toggle-popup",
-                "files-toggle-popup"
-            ]           
-        }
-    },
-    "ResourceFileModulePaths": {
-        "localBasePath": "",
-        "remoteExtPath": "FennecToolbar"
-    },
-    "SpecialPages": {},
-    "manifest_version": 1
-} 
+	"name": "FennecToolbar",
+	"version": "0.4.0",
+	"author": [
+		"[http://FennecToolbar.co.il FennecToolbar]",
+		"[[mw:user:HagaiAsaban|Hagai Asaban]]",
+		"[[mw:user:Yacohen|Yacohen]]"
+	],
+	"url": "doalogue-FennecToolbar/FennecToolbar",
+	"descriptionmsg": "FennecToolbar-fab-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.43"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\FennecToolbar\\": "includes/"
+	},
+	"AutoloadClasses": {
+		"FennecToolbarHooksHelper": "includes/FennecToolbarHooksHelper.php"
+	},
+	"config": {
+		"FennecToolbarAddToolbar":                  { "value": false },
+		"FennecToolbarAddViewButton":               { "value": false },
+		"FennecToolbarAddFontawesome":              { "value": false },
+		"FennecToolbarAddBootstrap":                { "value": false },
+		"FennecToolbarFontType":                    { "value": "fal" },
+		"FennecToolbarNamespacesAndTemplates":      { "value": [] },
+		"FennecToolbarNamespacesSelectOnRename":    { "value": false },
+		"FennecToolbarNamespaces": {
+			"value": [
+				{ "namespace": "main", "data": "Main" }
+			]
+		},
+		"FennecToolbarExcludeCategories":           { "value": [] },
+		"FennecToolbarPredefinedCategories":        { "value": [] },
+		"FennecToolbarAddDeleteReason":             { "value": false }
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\FennecToolbar\\Hooks",
+			"services": [ "MainConfig" ]
+		}
+	},
+	"Hooks": {
+		"BeforePageDisplay": "main"
+	},
+	"MessagesDirs": {
+		"FennecToolbar": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.ApiActions": {
+			"dependencies": [ "mediawiki.api" ],
+			"scripts": [ "modules/ext.ApiActions.js" ],
+			"messages": [
+				"create-page-redirect-to-edit", "edited-successfully", "created-successfully",
+				"modal-continue-to-page", "modal-close-button", "modal-delete-title",
+				"fennec-toolbar-purge-error", "fennec-toolbar-purge-success",
+				"fennec-toolbar-purge-start", "fennec-toolbar-copy-filename",
+				"modal-leave-copy-label", "modal-delete-message",
+				"fennec-toolbar-cancel", "fennec-toolbar-yes",
+				"fennec-toolbar-rename-override-are-you-sure"
+			]
+		},
+		"ext.bootbox": {
+			"scripts": [ "lib/bootbox/bootbox.js" ]
+		},
+		"ext.fennec.separate.bootstrap.styles": {
+			"styles": [ "lib/bootstrap/css/bootstrap.min.css" ]
+		},
+		"ext.fennec.separate.bootstrap": {
+			"scripts": [ "lib/bootstrap/js/bootstrap.min.js" ]
+		},
+		"ext.fennec.separate.fontawesome": {
+			"styles": [ "lib/fontawesome/css/all.css" ]
+		},
+		"ext.MaterialDialog": {
+			"dependencies": [
+				"ext.MaterialFAB", "ext.visualEditor.core",
+				"oojs", "oojs-ui", "oojs-ui-core", "oojs-ui-widgets",
+				"oojs-ui.styles.icons-editing-core",
+				"oojs-ui.styles.icons-moderation",
+				"oojs-ui.styles.icons-content",
+				"mediawiki.widgets"
+			],
+			"scripts": [
+				"lib/simply-toast/simply-toast.min.js",
+				"lib/sweetalert/sweetalert.min.js",
+				"lib/magic-suggest/magic-suggest.min.js",
+				"lib/tingle/tingle.js",
+				"lib/icheck/icheck.min.js",
+				"lib/underscore/underscore.min.js",
+				"modules/ext.MaterialDialog.js"
+			],
+			"styles": [
+				"lib/simply-toast/simply-toast.min.css",
+				"lib/sweetalert/sweetalert.min.css",
+				"lib/magic-suggest/magic-suggest.min.css",
+				"lib/tingle/tingle.css",
+				"lib/icheck/skins/square/blue.css",
+				"modules/ext.MaterialDialog.css"
+			],
+			"templates": {
+				"dialog.mustache": "templates/dialog.mustache"
+			}
+		},
+		"ext.FilesList": {
+			"dependencies": [ "ext.MaterialDialog", "ext.ApiActions" ],
+			"scripts": [
+				"lib/moment/moment.min.js",
+				"lib/DataTables/datatables.min.js",
+				"lib/DataTables/Highlight/dataTables.searchHighlight.min.js",
+				"lib/DataTables/Highlight/jquery.highlight.js",
+				"modules/ext.FilesList.js"
+			],
+			"styles": [
+				"lib/DataTables/datatables.min.css",
+				"lib/DataTables/DataTables-1.10.12/css/dataTables.foundation.min.css",
+				"modules/ext.FilesList.css"
+			],
+			"messages": [
+				"title-selected-file", "title-click-select-file", "title-select-file",
+				"files-toggle-popup",
+				"modal-click-to-watch-the-file", "modal-click-to-the-file-page",
+				"modal-add-files-page", "modal-if-delete-file",
+				"modal-delete-button", "modal-cancel-button",
+				"modal-create-button", "modal-create-button-submit",
+				"modal-choose-item-type", "modal-please-fill-all-fields",
+				"processing", "lengthMenu", "zeroRecords", "emptyTable",
+				"info", "infoEmpty", "infoFiltered", "infoPostFix",
+				"searchPlaceholder", "url",
+				"paginate-first", "paginate-previous", "paginate-next", "paginate-last",
+				"title-image", "title-name", "title-description",
+				"title-file-usage", "title-user", "title-date"
+			],
+			"templates": {
+				"data-table.mustache":   "templates/data-table.mustache",
+				"side-toolbar.mustache": "templates/side-toolbar.mustache"
+			}
+		},
+		"ext.DragAndDropUpload": {
+			"dependencies": [
+				"ext.MaterialDialog", "ext.ApiActions", "ext.FilesList",
+				"mediawiki.Upload", "mediawiki.Upload.Dialog"
+			],
+			"scripts": [
+				"modules/ext.DragAndDropUpload.js",
+				"lib/jQuery.filer/js/jquery.filer.min.js"
+			],
+			"styles": [
+				"modules/ext.DragAndDropUpload.css",
+				"lib/jQuery.filer/css/jquery.filer.css",
+				"lib/jQuery.filer/css/themes/dragDropBox.css"
+			],
+			"messages": [
+				"redirect-files-list", "uploaded-successfully",
+				"modal-upload-label-button", "upload-files-dialog-title",
+				"modal-popup-warning-file-missing", "modal-categories-placeholder",
+				"modal-categories-no-suggestion", "upload-toggle-popup",
+				"drag-n-drop", "or", "choose-files"
+			]
+		},
+		"ext.QuickCreateAndEdit": {
+			"dependencies": [ "ext.MaterialDialog", "ext.ApiActions", "mediawiki.Title" ],
+			"scripts": [
+				"modules/ext.QuickCreateAndEdit.js",
+				"modules/ext.DeletePage.js"
+			],
+			"messages": [
+				"modal-title-input-placeholder", "modal-title-input-label",
+				"modal-title-rename-input-label", "modal-popup-warning-page-exists",
+				"modal-categories-selector-label", "modal-categories-placeholder",
+				"modal-namespace-selector-label",
+				"modal-namespace-template-selector-label",
+				"modal-template-selector-label", "modal-template-placeholder",
+				"modal-popup-warning-template-not-exists",
+				"modal-popup-warning-title-missing",
+				"modal-create-page-button", "modal-save-page-button",
+				"modal-create-save-popup", "modal-edit-save-popup",
+				"modal-create-button", "modal-edit-page-button",
+				"modal-redirect-ve-button", "modal-categories-no-suggestion",
+				"modal-ok-button", "modal-create-new-red-page",
+				"modal-delete-button", "modal-cancel-button",
+				"fennec-toolbar-modal-delete-reason", "modal-if-delete-page"
+			]
+		},
+		"ext.QuickEditPageName": {
+			"dependencies": [ "ext.MaterialDialog", "ext.ApiActions", "mediawiki.Title" ],
+			"scripts": [ "modules/ext.QuickEditPageName.js" ],
+			"messages": [
+				"modal-title-input-placeholder", "modal-title-input-label",
+				"modal-title-rename-input-label", "modal-popup-warning-page-exists",
+				"modal-categories-selector-label", "modal-categories-placeholder",
+				"modal-namespace-selector-label",
+				"modal-namespace-template-selector-label",
+				"modal-template-selector-label", "modal-template-placeholder",
+				"modal-popup-warning-template-not-exists",
+				"modal-popup-warning-title-missing",
+				"modal-create-page-button", "modal-save-page-button",
+				"modal-create-save-popup", "modal-edit-save-popup",
+				"modal-edit-page-button", "modal-redirect-ve-button",
+				"modal-categories-no-suggestion", "modal-ok-button",
+				"modal-create-new-red-page", "modal-delete-button",
+				"modal-cancel-button", "modal-if-delete-page"
+			]
+		},
+		"ext.QuickCreateAndEditCategories": {
+			"dependencies": [ "ext.MaterialDialog", "ext.ApiActions", "mediawiki.Title" ],
+			"scripts": [ "modules/ext.QuickCreateAndEditCategories.js" ],
+			"messages": [
+				"modal-title-input-placeholder", "modal-title-input-label",
+				"modal-title-rename-input-label", "modal-popup-warning-page-exists",
+				"modal-categories-selector-label", "modal-categories-placeholder",
+				"modal-namespace-selector-label",
+				"modal-namespace-template-selector-label",
+				"modal-template-selector-label", "modal-template-placeholder",
+				"modal-popup-warning-template-not-exists",
+				"modal-popup-warning-title-missing",
+				"modal-create-page-button", "modal-save-page-button",
+				"modal-create-save-popup", "modal-edit-save-popup",
+				"modal-edit-page-button", "modal-redirect-ve-button",
+				"modal-categories-no-suggestion", "modal-ok-button",
+				"modal-create-new-red-page", "modal-delete-button",
+				"modal-cancel-button", "modal-if-delete-page"
+			]
+		},
+		"ext.FennecToolbar.first": {
+			"styles": [ "modules/ext.fennec-toolbar.less" ]
+		},
+		"ext.FennecToolbar": {
+			"dependencies": [
+				"ext.MaterialDialog", "ext.ApiActions", "ext.bootbox",
+				"ext.QuickCreateAndEdit", "ext.DragAndDropUpload", "ext.FilesList",
+				"mediawiki.Title", "ext.QuickEditPageName",
+				"ext.QuickCreateAndEditCategories"
+			],
+			"scripts": [ "modules/ext.FennecToolbar.js" ],
+			"styles": [ "modules/ext.FennecToolbar.css" ],
+			"messages": [
+				"create-toggle-popup", "spni-insert-item-name",
+				"edit-toggle-popup", "quick-edit-toggle-popup",
+				"files-toggle-popup"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "FennecToolbar"
+	},
+	"manifest_version": 2
+}
