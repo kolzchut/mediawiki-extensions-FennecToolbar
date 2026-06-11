@@ -39,11 +39,12 @@
 	"HookHandlers": {
 		"main": {
 			"class": "MediaWiki\\Extension\\FennecToolbar\\Hooks",
-			"services": [ "MainConfig" ]
+			"services": [ "MainConfig", "WatchlistManager", "HookContainer" ]
 		}
 	},
 	"Hooks": {
-		"BeforePageDisplay": "main"
+		"BeforePageDisplay": "main",
+		"OutputPageBeforeHTML": "main"
 	},
 	"MessagesDirs": {
 		"FennecToolbar": [

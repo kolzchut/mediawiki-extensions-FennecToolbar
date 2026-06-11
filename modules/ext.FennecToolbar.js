@@ -336,8 +336,8 @@
             ]
         };
 
-        MaterialAddFAB("", "");
-        
+        MaterialAddFAB(buttonsMenuData, "body");
+
         loadFennecToolbar();
     });
 
